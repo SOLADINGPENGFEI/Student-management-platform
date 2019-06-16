@@ -1,0 +1,24 @@
+.main {
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    padding: 0 50px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.19);
+}
+.person_data {
+    height: 80px;
+    line-height: 80px;
+}
+.list {
+    flex: 1;
+    background: #f0f2f5;
+}
+.list>div>ul {
+    height: 100%;
+}
