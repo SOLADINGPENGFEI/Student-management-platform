@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import {connect} from 'dva'
-import { Select,Input,Button,Radio,Form } from 'antd';
+import { Select,Button,Radio,Form,Breadcrumb } from 'antd';
 import './view.scss'
 const { Option } = Select;
-// const InputGroup = Input.Group;
 class questionView extends Component {
     state = { 
         checked: true
      }
      inquireSubmit = e => {
-      const _this=this;
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
         if (!err) {
-          _this.props.getCondition({
+            console.log(values.questionsType)
+          this.props.getCondition({
               questions_type_id:values.questionsType,
                subject_id:values.subjectType,
                exam_id:values.ExamType
@@ -22,9 +21,14 @@ class questionView extends Component {
       });
     };
     render() {
-        const {subdata,data,questionData,AllData} = this.props
+        const {subdata,data,questionData,AllData,findquestion} = this.props
+        console.log(findquestion)
         const {getFieldDecorator} = this.props.form
         return (
+            <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>查看试题</Breadcrumb.Item>
+        </Breadcrumb> 
             <div>
                <div className='viewNav'>
                <Form onSubmit={this.inquireSubmit}>
@@ -108,6 +112,7 @@ class questionView extends Component {
                     }
                 </div>
             </div>
+            </div>
         );
     }
     
@@ -153,10 +158,9 @@ const mapDispatch = dispatch => {
         })
       },
       //按条件获取试题查询借口 /exam/questions/condition
-      getCondition(payload){
+      getCondition(){
           dispatch({
-              type:"exam/FindData",
-              payload
+              type:"exam/FindData"
           })
       }
    }

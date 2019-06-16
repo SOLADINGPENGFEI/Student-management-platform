@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'dva'
-import { Table,Button,Modal,Input } from 'antd';
+import { Table,Button,Modal,Input,Breadcrumb } from 'antd';
 
 class questionType extends Component {
 
@@ -45,6 +45,10 @@ class questionType extends Component {
             },
           ];
         return (
+          <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>试题分类</Breadcrumb.Item>
+        </Breadcrumb> 
         <div>
           <Button type="primary" onClick={this.showModal}>添加类型</Button>
           <Modal
@@ -56,6 +60,7 @@ class questionType extends Component {
          <Input placeholder="请输入类型名称" onBlur={(e)=>this.handleValue(e)}/>
         </Modal>
           <Table  columns={columns} dataSource={typeData?typeData.data:null} />
+        </div>
         </div>
          );
     }
@@ -72,7 +77,11 @@ class questionType extends Component {
             //   text: value,
             //   sort: this.props.typeData.data.length +1
             // })
-            this.props.typeData?this.props.typeData.data.push(obj):null
+            if(this.props.typeData) {
+              this.props.typeData.data.push(obj)
+            } else {
+              return null
+            }
         }
     }
 }
@@ -86,10 +95,9 @@ const mapDispatch = dispatch => {
                 type: 'exam/typeQuestion'
             })
         },
-        findType(payload) {
+        findType() {
             dispatch({
-              type: 'exam/insertType',
-              payload
+              type: 'exam/insertType'
             })
         }
     }

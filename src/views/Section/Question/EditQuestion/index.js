@@ -23,14 +23,22 @@ class Addquestion extends Component {
         this.props.form.validateFields((err, value)=>{
           if(!err) {
             const {userData} = this.props
-            this.props.Addquestion({
+            //更新试题
+            let Administrator
+            if(userData.data) {
+              Administrator = userData.data.identity_id
+            } else {
+              return null
+            }
+            this.props.updatequestion({
               title: value.title, //试题的标题
               questions_stem: value.theme, //题干
               questions_answer: value.answer, //题目答案
               subject_id: value.subjectText, //课程id
               exam_id: value.examText, //考试类型id
               questions_type_id: value.questionText, //试题类型id
-              user_id:  userData.data[1].identity_id //用户id
+              user_id:  Administrator, //用户id
+              questions_id:this.props.history.location.search.slice(1)
             })
           }
         })
@@ -220,6 +228,12 @@ const mapDispatch = dispatch => {
             type:'exam/allQuestion'
 
         })
+      },
+      updatequestion(payload) {
+          dispatch({
+            type: 'exam/updatequestion',
+            payload
+          })
       }
   }
 }

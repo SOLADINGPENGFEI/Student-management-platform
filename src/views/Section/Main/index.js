@@ -8,7 +8,7 @@ import EditQuestion from '../Question/EditQuestion/index'
 import DetailCont from '../Question/Detail/index'
 
 import style from './Main.css';
-import { Menu, Dropdown, Icon, Layout,Breadcrumb } from 'antd';
+import { Menu, Dropdown, Icon, Layout } from 'antd';
 import { Route,Switch } from 'dva/router'
 const {Header, Content, Sider } = Layout
 
@@ -52,7 +52,7 @@ class Main extends Component {
                <img src="/public/bwLOGO.png" alt=""/>
                <div className={style.person_data}>
                   <Dropdown overlay={menu}>
-                      <a className="ant-dropdown-link" href="javascript:;" style={{color:"#000"}}>
+                      <a className="ant-dropdown-link" href="" style={{color:"#000"}}>
                       <img src="/public/head.jpg" alt=""/>
                         个人信息 
                         <Icon type="down" />
@@ -65,10 +65,6 @@ class Main extends Component {
                 <MainComp />
             </Sider>
           <Content style={{ padding: '0 50px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>学生管理系统</Breadcrumb.Item>
-          </Breadcrumb> 
-            <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
             <Switch>
                 <Route path='/main/question/add' component={Addquestion}/>
                 <Route path='/main/question/type' component={typeQuestion}/>
@@ -76,7 +72,6 @@ class Main extends Component {
                 <Route path='/main/question/viewEdit' component={EditQuestion}/>
                 <Route path='/main/question/viewDetail' component={DetailCont}/>
             </Switch>
-            </div>
             <div>
               <Switch>
                 <Route path='/main/user/add' component={null}/>
