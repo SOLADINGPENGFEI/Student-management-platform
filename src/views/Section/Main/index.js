@@ -6,6 +6,7 @@ import typeQuestion from '../Question/Typequestion/index'
 import questionView from '../Question/Viewquestion/index'
 import EditQuestion from '../Question/EditQuestion/index'
 import DetailCont from '../Question/Detail/index'
+import ReadClass from '../Question/Read/read'
 
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout,Breadcrumb } from 'antd';
@@ -65,10 +66,10 @@ class Main extends Component {
                 <MainComp />
             </Sider>
           <Content style={{ padding: '0 50px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
+          {/* <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>学生管理系统</Breadcrumb.Item>
-          </Breadcrumb> 
-            <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
+          </Breadcrumb>  */}
+            {/* <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}> */}
             <Switch>
                 <Route path='/main/question/add' component={Addquestion}/>
                 <Route path='/main/question/type' component={typeQuestion}/>
@@ -76,7 +77,7 @@ class Main extends Component {
                 <Route path='/main/question/viewEdit' component={EditQuestion}/>
                 <Route path='/main/question/viewDetail' component={DetailCont}/>
             </Switch>
-            </div>
+            {/* </div> */}
             <div>
               <Switch>
                 <Route path='/main/user/add' component={null}/>
@@ -86,7 +87,7 @@ class Main extends Component {
                 <Route path='/main/class/manage' component={null}/>
                 <Route path='/main/class/classroomManage' component={null}/>
                 <Route path='/main/class/studentManage' component={null}/>
-                <Route path='/main/paper/approval' component={null}/>
+                <Route path='/main/paper/approval' component={ReadClass}/>
               </Switch>
             </div>
           </Content>
