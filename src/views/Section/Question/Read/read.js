@@ -4,11 +4,13 @@ import styles from './read.scss'
 
 function ReadClass(props){
 
+
     
-    console.log('props',props)
     useEffect(()=>{
-        props.readClass()
+        props.getReadClass()
+      
     },[])
+    console.log('props',props)
     return <div className={styles.readClass}>
         <h2>待批班级</h2>
         <div className={styles.content}>
@@ -23,7 +25,7 @@ const mapStateToProps=state=>{
 }
 const mapDispatchToProps=dispatch=>{
     return {
-        readClass(){
+        getReadClass(){
             dispatch({
                 type:'read/readClass'
             })
