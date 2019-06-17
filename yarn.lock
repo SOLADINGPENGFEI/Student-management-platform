@@ -9874,7 +9874,7 @@ rmc-feedback@^2.0.0:
 
 roadhog@^2.5.0-beta.4:
   version "2.5.0-beta.4"
-  resolved "https://registry.npm.taobao.org/roadhog/download/roadhog-2.5.0-beta.4.tgz#0f9ba6ee45f2a32334151bc755e7e8601e727e9b"
+  resolved "https://registry.npm.taobao.org//download/roadhog-2.5.0-beta.4.tgz#0f9ba6ee45f2a32334151bc755e7e8601e727e9b"
   integrity sha1-D5um7kXyoyM0FRvHVefoYB5yfps=
   dependencies:
     "@babel/core" "^7.0.0"

@@ -7,7 +7,7 @@ export default {
   
     // 模块内部的状态
     state: {
-      
+        studentList:[]
     },
   
     subscriptions: {
@@ -18,18 +18,20 @@ export default {
     // 异步操作
     effects: {
       *readClass({ payload }, { call, put }) {  // eslint-disable-line
-        let studentList=yield call(readClass)
+        var studentList=yield call(readClass)
         console.log('studentList...',studentList)
         yield put({ 
-            type: 'getStudentList'
+            type: 'getStudentList',
+            payload:studentList
          });
       },
     },
   
     // 同步操作
     reducers: {
-        getStudentList(state, {studentList}) {
-        return { ...state, studentList };
+        getStudentList(state,action) {
+          console.log(action.payload)
+        return { ...state,studentList:action.payload };
       },
     },
   
