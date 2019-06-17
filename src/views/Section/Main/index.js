@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import MainComp from '@/components/Menu'
-
+//试题管理
 import Addquestion from '../Question/Addquestion/index'
 import typeQuestion from '../Question/Typequestion/index'
 import questionView from '../Question/Viewquestion/index'
 import EditQuestion from '../Question/EditQuestion/index'
 import DetailCont from '../Question/Detail/index'
+//用户管理
+import AddUser from '../User/Add/index'
+import Viewuser from '../User/View/index'
+//考试管理
+import AddExam from '../Exam/Addexam/index'
+import ManageExam from '../Exam/ManageExam/index'
 
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout } from 'antd';
@@ -64,7 +70,7 @@ class Main extends Component {
             <Sider style={{ width: 200,height:"100%"}}>
                 <MainComp />
             </Sider>
-          <Content style={{ padding: '0 50px' }}>
+          <Content style={{ padding: '0 30px' }}>
             <Switch>
                 <Route path='/main/question/add' component={Addquestion}/>
                 <Route path='/main/question/type' component={typeQuestion}/>
@@ -74,10 +80,10 @@ class Main extends Component {
             </Switch>
             <div>
               <Switch>
-                <Route path='/main/user/add' component={null}/>
-                <Route path='/main/user/view' component={null}/>
-                <Route path='/main/exam/add' component={null}/>
-                <Route path='/main/exam/manage' component={null}/>
+                <Route path='/main/user/add' component={AddUser}/>
+                <Route path='/main/user/view' component={Viewuser}/>
+                <Route path='/main/exam/add' component={AddExam}/>
+                <Route path='/main/exam/manage' component={ManageExam}/>
                 <Route path='/main/class/manage' component={null}/>
                 <Route path='/main/class/classroomManage' component={null}/>
                 <Route path='/main/class/studentManage' component={null}/>
