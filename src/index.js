@@ -13,6 +13,8 @@ app.model(require('./models/user').default);
 app.model(require('./models/question').default);
 app.model(require('./models/exam').default);
 app.model(require('./models/manageUser').default);
+app.model(require('./models/read').default);
+app.model(require('./models/class').default);
 
 // 4. Router
 app.router(require('./router').default);

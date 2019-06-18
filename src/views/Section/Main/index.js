@@ -12,6 +12,8 @@ import Viewuser from '../User/View/index'
 //考试管理
 import AddExam from '../Exam/Addexam/index'
 import ManageExam from '../Exam/ManageExam/index'
+//阅卷管理
+import WaitClass from '../Read/waitClass'
 
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout } from 'antd';
@@ -87,7 +89,7 @@ class Main extends Component {
                 <Route path='/main/class/manage' component={null}/>
                 <Route path='/main/class/classroomManage' component={null}/>
                 <Route path='/main/class/studentManage' component={null}/>
-                <Route path='/main/paper/approval' component={null}/>
+                <Route path='/main/paper/approval' component={WaitClass}/>
               </Switch>
             </div>
           </Content>
