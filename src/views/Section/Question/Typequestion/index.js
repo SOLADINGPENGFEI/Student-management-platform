@@ -45,10 +45,12 @@ class questionType extends Component {
             },
           ];
         return (
+          <div>
+          <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
+            <Breadcrumb.Item>试题分类</Breadcrumb.Item>
+          </Breadcrumb> 
           <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>试题分类</Breadcrumb.Item>
-        </Breadcrumb> 
+          
         <div>
           <Button type="primary" onClick={this.showModal}>添加类型</Button>
           <Modal
@@ -60,6 +62,7 @@ class questionType extends Component {
          <Input placeholder="请输入类型名称" onBlur={(e)=>this.handleValue(e)}/>
         </Modal>
           <Table  columns={columns} dataSource={typeData?typeData.data:null} />
+        </div>
         </div>
         </div>
          );

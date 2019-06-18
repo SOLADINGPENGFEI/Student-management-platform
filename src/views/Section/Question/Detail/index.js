@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react'
 import { connect } from 'dva'
-import { Tag } from 'antd';
+import { Tag,Breadcrumb } from 'antd';
 
-
+import './detail.scss'
 function Detail(props) {
     useEffect(()=>{
         props.getAllData()
@@ -29,7 +29,12 @@ function Detail(props) {
             return null
         }
     console.log(AllData)
+
     return <div>
+                <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
+                    <Breadcrumb.Item>试题详情</Breadcrumb.Item>
+                </Breadcrumb> 
+    <div className='detail-wrap'>
         <div className="detail">
             <div className="author">出题人: {detailquestion.author}</div>
             <span className='titleMsg'></span>
@@ -63,6 +68,7 @@ function Detail(props) {
                 {detailquestion.answer}
             </div>
         </div>
+    </div>
     </div>
 }
 const mapState = state => {

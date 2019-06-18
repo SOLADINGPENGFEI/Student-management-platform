@@ -40,13 +40,14 @@ function AddUser(props) {
 
     //请求数据
     useEffect(()=>{
+        props.getshowUser()
         props.getidentity()
         props.getviewAuthor()
         props.getapiAuthority()
     },[])
 
     //获取数据
-    const {userAll,viewAuthorsAll,apiAuthorityAll} = props
+    const {identity,userAll,viewAuthorsAll,apiAuthorityAll} = props
     console.log(props)
     return (
         <div className='wrap-user'>
@@ -71,7 +72,11 @@ function AddUser(props) {
                         {getFieldDecorator('Author', {
                              initialValue:"请选择身份id"
                         })(<Select style={{ width: 180 }} onChange={handleChange}>
-                            <Option value="Yiminghe">null</Option></Select>)}
+                            {identity?identity.map(item=>(
+                                <Option key={item.user_id}
+                                value={item.identity_text}>{item.identity_text}</Option>
+                            )):null}
+                            </Select>)}
                     </Form.Item>
                     <div>
                         <Button type="primary" htmlType="submit"
@@ -86,10 +91,12 @@ function AddUser(props) {
                             {getFieldDecorator('authors', {
                                 initialValue:"请选择身份id"
                             })(<Select  style={{ width: 180 }} onChange={handleChange}>
-                                <Option value="Yiminghe">null</Option>
+                                {userAll?userAll.map(item=>(
+                                    <Option key={item.user_id}
+                                    value={item.user_name}>{item.user_name}</Option>
+                                )):null}
                                 </Select>)}
                         </Form.Item>
-                        
                         <Form.Item>
                             {getFieldDecorator('username', {
                             })(<Input placeholder="请输入用户名" />)}
@@ -102,7 +109,11 @@ function AddUser(props) {
                             {getFieldDecorator('author', {
                                 initialValue:"请选择身份id"
                             })(<Select  style={{ width: 180 }} onChange={handleChange}>
-                                <Option value="Yiminghe">null</Option></Select>)}
+                                {identity?identity.map(item=>(
+                                <Option key={item.user_id}
+                                value={item.identity_text}>{item.identity_text}</Option>
+                            )):null}
+                            </Select>)}
                         </Form.Item>
                         <div>
                             <Button type="primary" htmlType="submit"
@@ -159,7 +170,11 @@ function AddUser(props) {
                                 {getFieldDecorator('identityView', {
                                     initialValue:"请选择已有视图"
                                 })(<Select  style={{ width: 180 }} onChange={handleChange}>
-                                        <Option value="Yiminghe">null</Option>
+                                    {viewAuthorsAll?viewAuthorsAll.map(item=>(
+                                        <Option key={item.view_id}
+                                        value={item.view_authority_text}>{item.view_authority_text}</Option>
+                                    )):null}
+                                        
                                     </Select>)}
                             </Form.Item>
                             <div>
@@ -177,14 +192,20 @@ function AddUser(props) {
                                 {getFieldDecorator('APIidentityID', {
                                     initialValue:"请选择身份id"
                                 })( <Select  style={{ width: 230 }} onChange={handleChange}>
-                                        <Option value="Yiminghe">null</Option>
+                                        {identity?identity.map(item=>(
+                                            <Option key={item.user_id}
+                                            value={item.identity_text}>{item.identity_text}</Option>
+                                        )):null}
                                     </Select>)}
                             </Form.Item>
                             <Form.Item>
                                 {getFieldDecorator('apiID', {
                                     initialValue:"请选择api接口权限id"
                                 })( <Select  style={{ width: 230 }} onChange={handleChange}>
-                                        <Option value="Yiminghe">null</Option>
+                                    {apiAuthorityAll?apiAuthorityAll.map(item=>(
+                                        <Option key={item.identity_api_authority_relation_id}
+                                        value={item.api_authority_text}>{item.api_authority_text}</Option>
+                                    )):null}
                                     </Select>)}
                             </Form.Item>
                             <div>
@@ -202,14 +223,20 @@ function AddUser(props) {
                                 {getFieldDecorator('identityID', {
                                    initialValue:"请选择身份id"
                                 })( <Select  style={{ width: 230 }} onChange={handleChange}>
-                                        <Option value="Yiminghe">null</Option>
+                                        {identity?identity.map(item=>(
+                                            <Option key={item.user_id}
+                                            value={item.identity_text}>{item.identity_text}</Option>
+                                        )):null}
                                     </Select>)}
                             </Form.Item>
                             <Form.Item>
                                 {getFieldDecorator('ViewID', {
                                     initialValue:"请选择视图接口权限id"
                                 })( <Select  style={{ width: 230 }} onChange={handleChange}>
-                                        <Option value="Yiminghe">null</Option>
+                                        {viewAuthorsAll?viewAuthorsAll.map(item=>(
+                                            <Option key={item.view_id}
+                                            value={item.view_authority_text}>{item.view_authority_text}</Option>
+                                        )):null}
                                     </Select>)}
                             </Form.Item>
                             <div>
@@ -230,8 +257,8 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
    return {
-        //身份数据
-    getidentity() {
+    //所有身份数据
+    getshowUser() {
         dispatch({
             type:'userManage/showUser'
         })
@@ -245,7 +272,14 @@ const mapDispatch = dispatch => {
     //展示身份和api权限关系
     getapiAuthority() {
         dispatch({
-            type:'userManage/apiAuthoritys'
+            type:'userManage/apiAuthority'
+        })
+    },
+
+    //身份数据
+    getidentity() {
+        dispatch({
+            type: 'userManage/identity'
         })
     }
    }

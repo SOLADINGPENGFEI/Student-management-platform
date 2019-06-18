@@ -46,10 +46,12 @@ class Addquestion extends Component {
         const {data,subdata,questionData} = this.props
         const { getFieldDecorator } = this.props.form;
         return (
+          <div>
+          <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
+            <Breadcrumb.Item>添加试题</Breadcrumb.Item>
+          </Breadcrumb> 
           <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>添加试题</Breadcrumb.Item>
-        </Breadcrumb> 
+          
           <Form onSubmit={this.handleSubmit} >
               <h3>题目信息</h3>
               <div>
@@ -150,6 +152,7 @@ class Addquestion extends Component {
               </div>
               <Button htmlType="submit" type="primary">提交</Button>
           </Form>
+        </div>
         </div>
         )
       }

@@ -25,10 +25,12 @@ class questionView extends Component {
         console.log(findquestion)
         const {getFieldDecorator} = this.props.form
         return (
+            <div>
+            <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
+                <Breadcrumb.Item>查看试题</Breadcrumb.Item>
+            </Breadcrumb> 
             <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>查看试题</Breadcrumb.Item>
-        </Breadcrumb> 
+         
             <div>
                <div className='viewNav'>
                <Form onSubmit={this.inquireSubmit}>
@@ -113,6 +115,7 @@ class questionView extends Component {
                 </div>
             </div>
             </div>
+        </div>
         );
     }
     
