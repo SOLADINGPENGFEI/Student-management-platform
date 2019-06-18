@@ -75,7 +75,7 @@ export function allQuestion() {
 //获取用户ID
 export function userMsg() {
     return request({
-      url:'/user/identity',
+      url:'/user/userInfo',
       method: 'GET'
     })
 }
@@ -87,17 +87,18 @@ export function updatequestion(params) {
     data: params
   })
 }
-export function FindData(params) {
+//按条件查询试题
+export function FindData() {
   return request({
     url: '/exam/questions/condition',
-    method: 'POST',
-    data: params
+    method: 'GET'
   })
 }
 //添加试题类型
-export function insertType() {
+export function insertType(payload) {
   return request({
     url: '/exam/insertQuestionsType',
-    method: 'GET'
+    method: 'GET',
+    payload
   })
 }

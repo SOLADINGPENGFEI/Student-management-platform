@@ -32,7 +32,7 @@ function Detail(props) {
     return <div>
         <div className="detail">
             <div className="author">出题人: {detailquestion.author}</div>
-            <h3 className='titleMsg'></h3>
+            <span className='titleMsg'></span>
              <div className="tags">
                  {
                      detailquestion.tags.map((item,index)=>(

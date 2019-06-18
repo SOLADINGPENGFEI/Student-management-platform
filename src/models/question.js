@@ -82,15 +82,16 @@ export default {
       },
       //更新试题
       *updatequestion({payload},{call,put}) {
-        let updateData = yield call(updatequestion)
+        let updateData = yield call(updatequestion,payload)
         console.log('updateData...',updateData)
         yield put({
           type: 'getUpdate',
           updateData
         })
       },
+      //按条件查询试题
       *FindData({payload},{call,put}) {
-        let findquestion = yield call(FindData,payload)
+        let findquestion = yield call(FindData)
         console.log('findquestion...',findquestion)
         yield put({
           type: 'Find',
@@ -136,6 +137,7 @@ export default {
       getUpdate(state,{updateData}) {
         return {...state, updateData}
       },
+      //按条件查询试题
       Find(state,{findquestion}) {
         return {...state, findquestion}
       },
