@@ -219,7 +219,7 @@ function UserShow(props) {
 }
 
 const mapStateToProps = state => {
-  return state.users;
+  return state.userManage;
 };
 
 const mapDispatchToProps = dispatch => {
@@ -227,32 +227,32 @@ const mapDispatchToProps = dispatch => {
     //用户数据
     usersShow() {
       dispatch({
-        type: "users/showUser"
+        type: "userManage/showUser"
       });
     },
     userIdentity() {
       dispatch({
-        type: "users/identity"
+        type: "userManage/identity"
       });
     },
     apiAuthority() {
       dispatch({
-        type: "users/apiAuthority"
+        type: "userManage/apiAuthority"
       });
     },
     identApiAuthor() {
       dispatch({
-        type: "users/identApiAuthor"
+        type: "userManage/identApiAuthor"
       });
     },
     viewAuthor() {
       dispatch({
-        type: "users/viewAuthor"
+        type: "userManage/viewAuthor"
       });
     },
     viewRelate() {
       dispatch({
-        type: "users/viewRelate"
+        type: "userManage/viewRelate"
       });
     },
   };

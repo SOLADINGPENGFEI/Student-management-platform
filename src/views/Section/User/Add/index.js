@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Tabs, Input, Select, Button } from "antd";
+import { Tabs, Input, Select, Button,Breadcrumb } from "antd";
 import { connect } from "dva";
 import styles from './AddUser.scss'
 
-function UserShow(props) {
+function AddUser(props) {
 
     const { TabPane } = Tabs;
     const { Option } = Select;
@@ -18,9 +18,12 @@ function UserShow(props) {
     }
 
     return (
-        <div className={styles.wrap}>
-            <div className={styles.section}>
-                <Tabs className={styles.type} onChange={callback} type="card">
+        <div className='wrap'>
+            <Breadcrumb style={{ margin: '16px 0',fontSize:22 }}>
+                <Breadcrumb.Item>添加用户</Breadcrumb.Item>
+            </Breadcrumb> 
+            <div className='section'>
+                <Tabs className='type' onChange={callback} type="card">
                     <TabPane tab="添加用户" key="1">
 
                         <Input placeholder="请输入用户名" />
@@ -56,7 +59,7 @@ function UserShow(props) {
                 </Tabs>
             </div>
 
-            <div className={styles.section}>
+            <div className='section'>
                 <Button>添加身份</Button>
                 <Input placeholder="请输入身份名称" />
                 <div>
@@ -65,7 +68,7 @@ function UserShow(props) {
                 </div>
             </div>
 
-            <div className={styles.section}>
+            <div className='section'>
                 <Button>添加api接口</Button>
                 <Input placeholder="请输入api接口权限名称" />
                 <Input placeholder="请输入api接口权限Url" />
@@ -76,7 +79,7 @@ function UserShow(props) {
                 </div>
             </div>
 
-            <div className={styles.section}>
+            <div className='section'>
                 <Button>添加视图接口权限</Button>
                 <div>
                     <Select defaultValue="选择已有视图" style={{ width: 180 }} onChange={handleChange}>
@@ -89,7 +92,7 @@ function UserShow(props) {
                 </div>
             </div>
 
-            <div className={styles.section}>
+            <div className='section'>
                 <Button>给身份设置api接口权限</Button>
                 <div>
                     <Select defaultValue="请选择身份id" style={{ width: 230 }} onChange={handleChange}>
@@ -108,7 +111,7 @@ function UserShow(props) {
                 </div>
             </div>
 
-                        <div className={styles.section}>
+                        <div className='section'>
                 <Button>给身份设置视图权限</Button>
                 <div>
                     <Select defaultValue="请选择身份id" style={{ width: 230 }} onChange={handleChange}>
@@ -126,15 +129,10 @@ function UserShow(props) {
                     <Button>重置</Button>
                 </div>
             </div>
-
-
-
         </div>
 
 
     );
 }
 
-
-
-export default UserShow;
+export default AddUser;
