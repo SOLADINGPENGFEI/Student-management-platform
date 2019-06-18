@@ -2,11 +2,11 @@ import {
     usersShow,USerIdentity,api_authority,identity_api_authority_relation,
     view_authority,identity_view_authority_relation
   
-  } from '../services/manageUser';
+  } from '../services/userManage';
   // console.log(usersShow)
   export default {
       // 命名空间
-      namespace: 'users',
+      namespace: 'userManage',
     
       // 模块内部的状态
       state: {
