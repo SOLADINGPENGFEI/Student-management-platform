@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Tabs, Input, Select, Button,Breadcrumb } from "antd";
+import { Form,Tabs, Input, Select, Button,Breadcrumb } from "antd";
 import { connect } from "dva";
-import styles from './AddUser.scss'
 
+import './AddUser.scss'
 function AddUser(props) {
 
     const { TabPane } = Tabs;
@@ -16,123 +16,239 @@ function AddUser(props) {
     function handleChange(value) {
         console.log(`selected ${value}`);
     }
+    //获取输入框里的值
+    let handleSubmit = e => {
+        e.preventDefault()
+        this.props.form.validateFields((err, values)=> {
+            if(!err) {
+                console.log(values)
+            }
+        })
+    }
+    //button按钮的加载效果
+    const [loading,newLoad] = useState(false)
+    const [iconLoading,newIconLoad] = useState(false)
+    let enterLoading = () => {
+        newLoad(true)
+      };
+    
+    let enterIconLoading = () => {
+        newIconLoad(true)
+    };
+    //form表单的属性
+    const {getFieldDecorator} = props.form
 
+    //请求数据
+    useEffect(()=>{
+        props.getidentity()
+        props.getviewAuthor()
+        props.getapiAuthority()
+    },[])
+
+    //获取数据
+    const {userAll,viewAuthorsAll,apiAuthorityAll} = props
+    console.log(props)
     return (
-        <div className='wrap'>
+        <div className='wrap-user'>
             <Breadcrumb style={{ margin: '16px 0',fontSize:22 }}>
                 <Breadcrumb.Item>添加用户</Breadcrumb.Item>
             </Breadcrumb> 
+            <div className='main'>
             <div className='section'>
+            <Form onSubmit={handleSubmit}>
                 <Tabs className='type' onChange={callback} type="card">
+               
                     <TabPane tab="添加用户" key="1">
-
-                        <Input placeholder="请输入用户名" />
-                        <Input placeholder="请输入密码" />
-
-                        <Select defaultValue="出题者" style={{ width: 180 }} onChange={handleChange}>
-                            <Option value="Yiminghe">null</Option>
-                        </Select>
+                    <Form.Item>
+                        {getFieldDecorator('username', {
+                        })(<Input placeholder="请输入用户名" />)}
+                    </Form.Item>
+                    <Form.Item>
+                        {getFieldDecorator('pwd', {
+                        })(<Input placeholder="请输入密码" />)}
+                    </Form.Item>
+                    <Form.Item>
+                        {getFieldDecorator('Author', {
+                             initialValue:"请选择身份id"
+                        })(<Select style={{ width: 180 }} onChange={handleChange}>
+                            <Option value="Yiminghe">null</Option></Select>)}
+                    </Form.Item>
+                    <div>
+                        <Button type="primary" htmlType="submit"
+                        loading={iconLoading}
+                        onClick={enterIconLoading}>确定</Button>
+                        <Button>重置</Button>
+                    </div>
+                    </TabPane>
+                    
+                    <TabPane tab="更新用户" key="2">
+                        <Form.Item>
+                            {getFieldDecorator('authors', {
+                                initialValue:"请选择身份id"
+                            })(<Select  style={{ width: 180 }} onChange={handleChange}>
+                                <Option value="Yiminghe">null</Option>
+                                </Select>)}
+                        </Form.Item>
+                        
+                        <Form.Item>
+                            {getFieldDecorator('username', {
+                            })(<Input placeholder="请输入用户名" />)}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('pwd', {
+                            })(<Input placeholder="请输入密码" />)}
+                        </Form.Item>
+                        <Form.Item>
+                            {getFieldDecorator('author', {
+                                initialValue:"请选择身份id"
+                            })(<Select  style={{ width: 180 }} onChange={handleChange}>
+                                <Option value="Yiminghe">null</Option></Select>)}
+                        </Form.Item>
                         <div>
-                            <Button type="primary">确定</Button>
+                            <Button type="primary" htmlType="submit"
+                            loading={iconLoading}
+                            onClick={enterIconLoading}>确定</Button>
                             <Button>重置</Button>
                         </div>
-
-                    </TabPane>
-                    <TabPane tab="更新用户" key="2">
-
-                        <Select defaultValue="出题者" style={{ width: 180 }} onChange={handleChange}>
-                            <Option value="Yiminghe">null</Option>
-                        </Select>
-
-                        <Input placeholder="请输入用户名" />
-                        <Input placeholder="请输入密码" />
-
-                        <Select defaultValue="出题者" style={{ width: 180 }} onChange={handleChange}>
-                            <Option value="Yiminghe">null</Option>
-                        </Select>
-                        <div>
-                            <Button type="primary">确定</Button>
-
-                        </div>
-
                     </TabPane>
                 </Tabs>
+                    </Form>
+                </div>  
+                <div className='section'>
+                    <Button>添加身份</Button>
+                    <Form>
+                        <Form.Item>
+                            {getFieldDecorator('username', {
+                            })(<Input placeholder="请输入身份名称" />)}
+                        </Form.Item>
+                        <div>
+                            <Button type="primary" htmlType="submit"
+                            loading={iconLoading}
+                            onClick={enterIconLoading}>确定</Button>
+                            <Button>重置</Button>
+                        </div>
+                    </Form>
+                </div>
+                    <div className='section'>
+                        <Button>添加api接口</Button>
+                        <Form>
+                            <Form.Item>
+                                {getFieldDecorator('apiName', {
+                                })(<Input placeholder="请输入api接口权限名称" />)}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator('apiUrl', {
+                                })(<Input placeholder="请输入api接口权限Url" />)}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator('apiMethod', {
+                                })(<Input placeholder="请输入api接口权限方法" />)}
+                            </Form.Item>
+                        </Form>
+                        <div>
+                            <Button type="primary" htmlType="submit"
+                            loading={iconLoading}
+                            onClick={enterIconLoading}>确定</Button>
+                            <Button>重置</Button>
+                        </div>
+                    </div>
+                    <div className='section'>
+                        <Button>添加视图接口权限</Button>
+                        <Form>
+                            <Form.Item>
+                                {getFieldDecorator('identityView', {
+                                    initialValue:"请选择已有视图"
+                                })(<Select  style={{ width: 180 }} onChange={handleChange}>
+                                        <Option value="Yiminghe">null</Option>
+                                    </Select>)}
+                            </Form.Item>
+                            <div>
+                                <Button type="primary" htmlType="submit"
+                                loading={iconLoading}
+                                onClick={enterIconLoading}>确定</Button>
+                                <Button>重置</Button>
+                            </div>
+                        </Form>
+                    </div>
+                    <div className='section'>
+                        <Button>给身份设置api接口权限</Button>
+                        <Form>
+                            <Form.Item>
+                                {getFieldDecorator('APIidentityID', {
+                                    initialValue:"请选择身份id"
+                                })( <Select  style={{ width: 230 }} onChange={handleChange}>
+                                        <Option value="Yiminghe">null</Option>
+                                    </Select>)}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator('apiID', {
+                                    initialValue:"请选择api接口权限id"
+                                })( <Select  style={{ width: 230 }} onChange={handleChange}>
+                                        <Option value="Yiminghe">null</Option>
+                                    </Select>)}
+                            </Form.Item>
+                            <div>
+                                <Button type="primary" htmlType="submit"
+                                loading={iconLoading}
+                                onClick={enterIconLoading}>确定</Button>
+                                <Button>重置</Button>
+                            </div>
+                        </Form>
+                    </div>
+                    <div className='section'>
+                        <Button>给身份设置视图权限</Button>
+                        <Form>
+                            <Form.Item>
+                                {getFieldDecorator('identityID', {
+                                   initialValue:"请选择身份id"
+                                })( <Select  style={{ width: 230 }} onChange={handleChange}>
+                                        <Option value="Yiminghe">null</Option>
+                                    </Select>)}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator('ViewID', {
+                                    initialValue:"请选择视图接口权限id"
+                                })( <Select  style={{ width: 230 }} onChange={handleChange}>
+                                        <Option value="Yiminghe">null</Option>
+                                    </Select>)}
+                            </Form.Item>
+                            <div>
+                                <Button type="primary" htmlType="submit"
+                                loading={iconLoading}
+                                onClick={enterIconLoading}>确定</Button>
+                                <Button>重置</Button>
+                            </div>
+                        </Form>
+                    </div>
             </div>
-
-            <div className='section'>
-                <Button>添加身份</Button>
-                <Input placeholder="请输入身份名称" />
-                <div>
-                    <Button type="primary">确定</Button>
-                    <Button>重置</Button>
-                </div>
-            </div>
-
-            <div className='section'>
-                <Button>添加api接口</Button>
-                <Input placeholder="请输入api接口权限名称" />
-                <Input placeholder="请输入api接口权限Url" />
-                <Input placeholder="请输入api接口权限方法" />
-                <div>
-                    <Button type="primary">确定</Button>
-                    <Button>重置</Button>
-                </div>
-            </div>
-
-            <div className='section'>
-                <Button>添加视图接口权限</Button>
-                <div>
-                    <Select defaultValue="选择已有视图" style={{ width: 180 }} onChange={handleChange}>
-                        <Option value="Yiminghe">null</Option>
-                    </Select>
-                </div>
-                <div>
-                    <Button type="primary">确定</Button>
-                    <Button>重置</Button>
-                </div>
-            </div>
-
-            <div className='section'>
-                <Button>给身份设置api接口权限</Button>
-                <div>
-                    <Select defaultValue="请选择身份id" style={{ width: 230 }} onChange={handleChange}>
-                        <Option value="Yiminghe">null</Option>
-                    </Select>
-                </div>
-
-                <div>
-                    <Select defaultValue="请选择api接口权限id" style={{ width: 230 }} onChange={handleChange}>
-                        <Option value="Yiminghe">null</Option>
-                    </Select>
-                </div>
-                <div>
-                    <Button type="primary">确定</Button>
-                    <Button>重置</Button>
-                </div>
-            </div>
-
-                        <div className='section'>
-                <Button>给身份设置视图权限</Button>
-                <div>
-                    <Select defaultValue="请选择身份id" style={{ width: 230 }} onChange={handleChange}>
-                        <Option value="Yiminghe">null</Option>
-                    </Select>
-                </div>
-
-                <div>
-                    <Select defaultValue="请选择视图接口权限id" style={{ width: 230 }} onChange={handleChange}>
-                        <Option value="Yiminghe">null</Option>
-                    </Select>
-                </div>
-                <div>
-                    <Button type="primary">确定</Button>
-                    <Button>重置</Button>
-                </div>
-            </div>
-        </div>
-
+    </div>
 
     );
 }
+const mapState = state => {
+    return state.userManage
+}
+const mapDispatch = dispatch => {
+   return {
+        //身份数据
+    getidentity() {
+        dispatch({
+            type:'userManage/showUser'
+        })
+    },
+    //视图接口权限
+    getviewAuthor(){
+        dispatch({
+            type:'userManage/viewAuthor'
+        })
+    },
+    //展示身份和api权限关系
+    getapiAuthority() {
+        dispatch({
+            type:'userManage/apiAuthoritys'
+        })
+    }
+   }
 
-export default AddUser;
+}
+export default connect(mapState,mapDispatch)(Form.create()(AddUser));

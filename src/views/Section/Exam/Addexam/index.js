@@ -128,8 +128,7 @@ function AddExam(props) {
                         </Select>
                     )}
                 </Form.Item>
-                <Form.Item
-                    label="题目数量"
+                <Form.Item label="题目数量"
                     {...formItemLayout}
                     validateStatus={number.validateStatus}
                     help={number.errorMsg }
