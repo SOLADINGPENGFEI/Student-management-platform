@@ -1,4 +1,4 @@
-import { examType,getSubject } from '../services/examManage'
+import { examType,getSubject,getList } from '../services/examManage'
 export default {
     // 命名空间
     namespace: 'exammanage',
@@ -6,7 +6,8 @@ export default {
     // 模块内部的状态
     state: {
        examType: null,
-       Subject: null
+       Subject: null,
+       ListPaper: null
     },
   
     subscriptions: {
@@ -31,6 +32,15 @@ export default {
               type:'getSub',
               SubjectData
           })
+      },
+      //获取试卷列表
+      *getList({payload},{call,put}) {
+        const ListData = yield call(getList)
+        console.log('ListData...',ListData)
+        yield put({
+            type:'GetData',
+            ListData
+        })
       }
     },
   
@@ -43,6 +53,10 @@ export default {
       //获取课程接口
       getSub(state,{SubjectData}) {
           return {...state, Subject:SubjectData.data}
+      },
+      //获取试卷列表
+      GetData(state,{ListData}) {
+        return {...state,ListPaper:ListData.exam}
       }
     },
   

@@ -18,3 +18,11 @@ export function getSubject() {
     })
 }
 
+//获取试卷列表
+export function getList() {
+    return request({
+        url: '/exam/exam',
+        type: 'GET'
+    })
+}
+

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Menu,Icon} from 'antd'
 import {Link} from 'dva/router'
+import {injectIntl} from 'react-intl'
 
 const {SubMenu} = Menu
 
@@ -17,18 +18,20 @@ function MenuComp(props) {
       title={
         <span>
           <Icon type="appstore" />
-          <span>试卷管理</span>
+          <span>
+          {props.intl.formatMessage({id:'router.main.question'})}
+          </span>
         </span>
       }
     >
       <Menu.Item key="1">
-          <Link to='/main/question/add'>添加试题</Link>
+          <Link to='/main/question/add'>{props.intl.formatMessage({id:'router.main.question.add'})}</Link>
       </Menu.Item>
       <Menu.Item key="2">
-          <Link to='/main/question/type'>试题分类</Link>
+          <Link to='/main/question/type'>{props.intl.formatMessage({id:'router.main.question.type'})}</Link>
       </Menu.Item>
       <Menu.Item key="3">
-          <Link to='/main/question/view'>查看试题</Link>
+          <Link to='/main/question/view'>{props.intl.formatMessage({id:'router.main.question.view'})}</Link>
       </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -36,15 +39,17 @@ function MenuComp(props) {
       title={
         <span>
           <Icon type="appstore" />
-          <span>用户管理</span>
+          <span>
+          {props.intl.formatMessage({id:'router.main.user'})}
+          </span>
         </span>
       }
     >
       <Menu.Item key="4">
-          <Link to='/main/user/add'>添加用户</Link>
+          <Link to='/main/user/add'>{props.intl.formatMessage({id:'router.main.user.add'})}</Link>
       </Menu.Item>
       <Menu.Item key="5">
-          <Link to='/main/user/view'>用户展示</Link>
+          <Link to='/main/user/view'>{props.intl.formatMessage({id:'router.main.user.view'})}</Link>
       </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -52,15 +57,17 @@ function MenuComp(props) {
       title={
         <span>
           <Icon type="appstore" />
-          <span>考试管理</span>
+          <span>
+            {props.intl.formatMessage({id:'router.main.exam'})}
+          </span>
         </span>
       }
     >
       <Menu.Item key="6">
-          <Link to='/main/exam/add'>添加考试</Link>
+          <Link to='/main/exam/add'>{props.intl.formatMessage({id:'router.main.exam.add'})}</Link>
       </Menu.Item>
       <Menu.Item key="7">
-          <Link to='/main/exam/manage'>试卷管理</Link>
+          <Link to='/main/exam/manage'>{props.intl.formatMessage({id:'router.main.exam.manage'})}</Link>
       </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -68,18 +75,18 @@ function MenuComp(props) {
       title={
         <span>
           <Icon type="mail" />
-          <span>班级管理</span>
+          <span>{props.intl.formatMessage({id:'router.main.class'})}</span>
         </span>
       }
     >
       <Menu.Item key="8">
-          <Link to='/main/class/manage'>班级管理</Link>
+          <Link to='/main/class/manage'>{props.intl.formatMessage({id:'router.main.class.manage'})}</Link>
       </Menu.Item>
       <Menu.Item key="9">
-          <Link to='/main/class/classroomManage'>教室管理</Link>
+          <Link to='/main/class/classroomManage'>{props.intl.formatMessage({id:'router.main.class.classroomManage'})}</Link>
       </Menu.Item>
       <Menu.Item key="10">
-          <Link to='/main/class/studentManage'>学生管理</Link>
+          <Link to='/main/class/studentManage'>{props.intl.formatMessage({id:'router.main.class.studentManage'})}</Link>
       </Menu.Item>
     </SubMenu>
     <SubMenu
@@ -87,14 +94,14 @@ function MenuComp(props) {
       title={
         <span>
           <Icon type="appstore" />
-          <span>阅卷管理</span>
+          <span>{props.intl.formatMessage({id:'router./main/paper'})}</span>
         </span>
       }
     >
       <Menu.Item key="11">
-          <Link to='/main/paper/approval'>待批班级</Link>
+          <Link to='/main/paper/approval'>{props.intl.formatMessage({id:'router./main/paper/approval'})}</Link>
       </Menu.Item>
     </SubMenu>
   </Menu>
 }
-export default MenuComp
+export default injectIntl(MenuComp)

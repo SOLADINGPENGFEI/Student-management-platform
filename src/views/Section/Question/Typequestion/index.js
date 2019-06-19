@@ -6,7 +6,7 @@ class questionType extends Component {
 
     state = { 
        visible: false,
-       typeData: []
+      //  typeData: []
      }
      showModal = () => {
        this.setState({
@@ -26,24 +26,25 @@ class questionType extends Component {
      
     render() {
         const {typeData} = this.props
-        
           const columns = [
             {
+              key: 'questions_type_sort',
               title: '类型ID',
               dataIndex: 'questions_type_sort',
-              key: 'questions_type_sort',
+              
             },
             {
+              key: 'questions_type_text',
               title: '类型名称',
               dataIndex: 'questions_type_text',
-              key: 'questions_type_text',
             },
             {
               title: '操作',
-              dataIndex: '',
-              key: '',
+              dataIndex: 'questions_type_id',
+              key:'questions_type_id',
             },
           ];
+         
         return (
           <div>
           <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
@@ -61,33 +62,36 @@ class questionType extends Component {
         >
          <Input placeholder="请输入类型名称" onBlur={(e)=>this.handleValue(e)}/>
         </Modal>
-          <Table  columns={columns} dataSource={typeData?typeData.data:null} />
+          <Table  columns={columns} rowKey={item=>item.questions_type_sort} dataSource={typeData?typeData.data:null} />
         </div>
         </div>
         </div>
          );
     }
+    handleValue = e => {
+      const value = e.target.value
+        let obj = {
+          questions_type_text: value,
+          questions_type_id: +new Date(),
+          questions_type_sort: this.props.typeData.data.length +1
+        }
+        if(this.props.typeData) {
+          this.props.typeData.data.push(obj)
+        } else {
+          return null
+        }
+      }
     componentDidMount() {
         this.props.getType()
-        this.handleValue = e => {
-          const value = e.target.value
-            let obj = {
-              questions_type_text: value,
-              questions_type_id: +new Date(),
-              questions_type_sort: this.props.typeData.data.length +1
-            }
+      
             // this.props.findType({
             //   text: value,
             //   sort: this.props.typeData.data.length +1
             // })
-            if(this.props.typeData) {
-              this.props.typeData.data.push(obj)
-            } else {
-              return null
-            }
+           
         }
     }
-}
+
 const mapState = state => {
     return state.exam
 }

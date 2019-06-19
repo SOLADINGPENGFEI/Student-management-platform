@@ -7,11 +7,13 @@ const { Option } = Select;
 function AddExam(props) {
     const { getFieldDecorator } = props.form;
     const {examType,Subject} = props
+    //获取添加的值
     let handleSubmit = e => {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (!err) {
             console.log(values);
+            props.history.replace('/main/exam/edit')
             }
         });
         };

@@ -12,10 +12,12 @@ import Viewuser from '../User/View/index'
 //考试管理
 import AddExam from '../Exam/Addexam/index'
 import ManageExam from '../Exam/ManageExam/index'
+import ExamDetail from '../Exam/ExamDetail/index'
 
 import style from './Main.css';
-import { Menu, Dropdown, Icon, Layout } from 'antd';
+import { Menu, Dropdown, Icon, Layout,Spin } from 'antd';
 import { Route,Switch } from 'dva/router'
+import {connect} from 'dva'
 const {Header, Content, Sider } = Layout
 
 class Main extends Component {
@@ -52,10 +54,15 @@ class Main extends Component {
         </Menu.Item>
       </Menu>
     );
+    
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
                <img src="/public/bwLOGO.png" alt=""/>
+               <span>国际化切换
+               <button onClick={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
+               {this.props.locale==='zh'?'中文':'英文'}</button>
+               </span>
                <div className={style.person_data}>
                   <Dropdown overlay={menu}>
                       <a className="ant-dropdown-link" href="" style={{color:"#000"}}>
@@ -84,12 +91,16 @@ class Main extends Component {
                 <Route path='/main/user/view' component={Viewuser}/>
                 <Route path='/main/exam/add' component={AddExam}/>
                 <Route path='/main/exam/manage' component={ManageExam}/>
+                <Route path='/main/exam/detail' component={ExamDetail}/>
                 <Route path='/main/class/manage' component={null}/>
                 <Route path='/main/class/classroomManage' component={null}/>
                 <Route path='/main/class/studentManage' component={null}/>
                 <Route path='/main/paper/approval' component={null}/>
               </Switch>
             </div>
+            {this.props.loading?<div className={style.loading}>
+              <Spin/>
+            </div>:null}
           </Content>
         </Layout>
       </Layout>
@@ -102,5 +113,20 @@ class Main extends Component {
 Main.propTypes = {
 
 };
-
-export default Main;
+const mapStateToProps = state => {
+    return {
+      // loading: state.loading.global,
+      locale: state.global.locale
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+      changeLocal: payload => {
+        dispatch({
+          type: 'global/changeLocale',
+          payload
+        })
+      }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Main);

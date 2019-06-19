@@ -48,7 +48,7 @@ function AddUser(props) {
 
     //获取数据
     const {identity,userAll,viewAuthorsAll,apiAuthorityAll} = props
-    console.log(props)
+    console.log(apiAuthorityAll)
     return (
         <div className='wrap-user'>
             <Breadcrumb style={{ margin: '16px 0',fontSize:22 }}>
@@ -203,7 +203,7 @@ function AddUser(props) {
                                     initialValue:"请选择api接口权限id"
                                 })( <Select  style={{ width: 230 }} onChange={handleChange}>
                                     {apiAuthorityAll?apiAuthorityAll.map(item=>(
-                                        <Option key={item.identity_api_authority_relation_id}
+                                        <Option key={item.api_authority_text}
                                         value={item.api_authority_text}>{item.api_authority_text}</Option>
                                     )):null}
                                     </Select>)}
