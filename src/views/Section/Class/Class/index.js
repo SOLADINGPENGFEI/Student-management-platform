@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'dva'
-import { getGrade } from '../../../../services';
 
 function ClassManger(props) {
     useEffect(()=>{
-        props.grade()
+        props.getGrade()
     },[])
 
     return (
@@ -14,14 +13,14 @@ function ClassManger(props) {
 
 
 const mapStateToProps = state => {
-    return state.manger
+    return state.class
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        grade(){
+        getGrade(){
             dispatch({
-                type: 'classmanger/GetGrade'
+                type: 'class/getGrade'
             })
         }
     }
