@@ -26,3 +26,12 @@ export function getList() {
     })
 }
 
+//创建试题
+export function createItem(params) {
+    return request({
+        url:'/exam/exam',
+        type:'POST',
+        data: params
+    })
+}
+

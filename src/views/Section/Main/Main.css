@@ -10,6 +10,16 @@
     align-items: center;
     background: #fff;
     box-shadow: 0 0 10px 0 rgba(0,0,0,.19);
+
+}
+.header>span>button {
+    border: none;
+    background: #ee0bdb;
+    height: 40px;
+    width: 60px;
+    line-height: 40px;
+    color: #fff;
+    margin-left: 10px;
 }
 .person_data {
     height: 80px;

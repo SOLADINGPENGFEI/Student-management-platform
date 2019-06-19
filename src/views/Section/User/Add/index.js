@@ -22,6 +22,7 @@ function AddUser(props) {
         this.props.form.validateFields((err, values)=> {
             if(!err) {
                 console.log(values)
+
             }
         })
     }
@@ -48,7 +49,6 @@ function AddUser(props) {
 
     //获取数据
     const {identity,userAll,viewAuthorsAll,apiAuthorityAll} = props
-    console.log(apiAuthorityAll)
     return (
         <div className='wrap-user'>
             <Breadcrumb style={{ margin: '16px 0',fontSize:22 }}>

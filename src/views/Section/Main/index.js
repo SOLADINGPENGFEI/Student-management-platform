@@ -13,9 +13,10 @@ import Viewuser from '../User/View/index'
 import AddExam from '../Exam/Addexam/index'
 import ManageExam from '../Exam/ManageExam/index'
 import ExamDetail from '../Exam/ExamDetail/index'
+import createNew from '../Exam/createNew/index'
 
 import style from './Main.css';
-import { Menu, Dropdown, Icon, Layout,Spin } from 'antd';
+import { Menu, Dropdown, Icon, Layout } from 'antd';
 import { Route,Switch } from 'dva/router'
 import {connect} from 'dva'
 const {Header, Content, Sider } = Layout
@@ -59,7 +60,7 @@ class Main extends Component {
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
                <img src="/public/bwLOGO.png" alt=""/>
-               <span>国际化切换
+               <span>国际化
                <button onClick={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
                {this.props.locale==='zh'?'中文':'英文'}</button>
                </span>
@@ -92,15 +93,16 @@ class Main extends Component {
                 <Route path='/main/exam/add' component={AddExam}/>
                 <Route path='/main/exam/manage' component={ManageExam}/>
                 <Route path='/main/exam/detail' component={ExamDetail}/>
+                <Route path='/main/exam/edit' component={createNew} />
                 <Route path='/main/class/manage' component={null}/>
                 <Route path='/main/class/classroomManage' component={null}/>
                 <Route path='/main/class/studentManage' component={null}/>
                 <Route path='/main/paper/approval' component={null}/>
               </Switch>
             </div>
-            {this.props.loading?<div className={style.loading}>
+            {/* {this.props.loading?<div className={style.loading}>
               <Spin/>
-            </div>:null}
+            </div>:null} */}
           </Content>
         </Layout>
       </Layout>

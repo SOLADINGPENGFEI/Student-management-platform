@@ -7,16 +7,6 @@ const { Option } = Select;
 function AddExam(props) {
     const { getFieldDecorator } = props.form;
     const {examType,Subject} = props
-    //获取添加的值
-    let handleSubmit = e => {
-        e.preventDefault();
-        props.form.validateFields((err, values) => {
-            if (!err) {
-            console.log(values);
-            props.history.replace('/main/exam/edit')
-            }
-        });
-        };
     useEffect(()=>{
         props.getType()
         props.getSubjectType()
@@ -83,6 +73,32 @@ function AddExam(props) {
         newNumber({...validatePrimeNumber(value),
             value,})
           }
+          //获取添加的值
+    let handleSubmit = e => {
+        e.preventDefault();
+        props.form.validateFields((err, values) => {
+            if (!err) {
+            console.log(values);
+            props.createItem({
+                subject_id:values.examTest,
+                exam_id:values.examType,
+                title:values.text,
+                number:values.count,
+                start_time:values.startTime._d.toLocaleString(),
+                end_time: values.endTime._d.toLocaleString()
+            })
+            let addItem = localStorage.setItem('exam',JSON.stringify({
+                subject_id:values.examTest,
+                exam_id:values.examType,
+                title:values.text,
+                number:values.count,
+                start_time:values.startTime._d.toLocaleString(),
+                end_time: values.endTime._d.toLocaleString()
+            }))
+            props.history.replace('/main/exam/edit')
+            }
+        });
+    }
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize:22 }}>
           <Breadcrumb.Item>添加考试</Breadcrumb.Item>
@@ -146,25 +162,39 @@ function AddExam(props) {
                    
                 </Form.Item>
                 <Form.Item label="考试时间">
+                {getFieldDecorator('startTime', {
+                        rules: [{
+                            required: true,
+                            message: '请选择日期',},
+                        ], initialValue: startValue
+                    })(
                         <DatePicker
                         disabledDate={disabledStartDate}
                         showTime
                         format="YYYY-MM-DD HH:mm:ss"
-                        value={startValue}
+                        setFieldsvalue={startValue}
                         placeholder="开始时间"
                         onChange={onStartChange}
                         onOpenChange={handleStartOpenChange}
-                      />-
-                      <DatePicker
-                        disabledDate={disabledEndDate}
-                        showTime
-                        format="YYYY-MM-DD HH:mm:ss"
-                        value={endValue}
-                        placeholder="结束时间"
-                        onChange={onEndChange}
-                        open={endOpen}
-                        onOpenChange={handleEndOpenChange}
                       />
+                    )}-
+                {getFieldDecorator('endTime', {
+                    rules: [{
+                        required: true,
+                        message: '请选择日期',},
+                    ], initialValue: endValue
+                })(
+                    <DatePicker
+                    disabledDate={disabledEndDate}
+                    showTime
+                    format="YYYY-MM-DD HH:mm:ss"
+                    setFieldsvalue={endValue}
+                    placeholder="结束时间"
+                    onChange={onEndChange}
+                    open={endOpen}
+                    onOpenChange={handleEndOpenChange}
+                    />
+                )}
                 </Form.Item>
                 <Button type="primary" htmlType="submit">创建试卷</Button>
             </Form>
@@ -185,6 +215,13 @@ const mapDispatch = dispatch => {
         getSubjectType() {
             dispatch({
                 type:'exammanage/getSubject'
+            })
+        },
+        //创建试卷
+        createItem(payload) {
+            dispatch({
+                type:'exammanage/createItem',
+                payload
             })
         }
     }
