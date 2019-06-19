@@ -8,8 +8,8 @@ import {connect} from 'dva'
 import { addLocaleData, IntlProvider } from 'react-intl'
 import en from 'react-intl/locale-data/en'
 import zh from 'react-intl/locale-data/zh'
-import { zhCN } from "@/lang/zh-UN.js";
-import { enUS } from "@/lang/en-US.js";
+import { zhCN } from "./lang/zh-CN.js";
+import { enUS } from "./lang/en-US.js";
 
 const localMap={
   en:enUS,

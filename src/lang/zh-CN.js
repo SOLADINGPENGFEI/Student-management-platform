@@ -1,6 +1,6 @@
 export default{
     'router.questions':'Question',
-    'router.questions.add':'Addquestion',
-    'router.questions.type':'Typequestion',
-    'router.questions.view':'Viewquestion'
+    'router.questions.add':'Addquestion/index',
+    'router.questions.type':'Typequestion/index',
+    'router.questions.view':'Viewquestion/index'
 }
