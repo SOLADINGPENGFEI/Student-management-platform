@@ -4,6 +4,7 @@ import { Table, Divider, Tag ,Modal, Button} from 'antd';
 import styles from './index.scss'
 import { width } from 'window-size';
 
+
 function Class(props) {
     useEffect(() => {
         props.getClass()
@@ -55,7 +56,6 @@ function Class(props) {
         }
     })
     console.log('data', data)
-    var visible=false
     function showModal(){
         console.log(1)
         visible=true
