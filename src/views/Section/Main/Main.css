@@ -1,7 +1,6 @@
 .main {
     display: flex;
     flex-direction: column;
-
 }
 .header {
     padding: 0 50px;

@@ -1,5 +1,2 @@
 export * from './user.js'
-export * from './read.js'
-export * from './userManage.js'
-export * from './class.js'
 // export * from './examManage.js'

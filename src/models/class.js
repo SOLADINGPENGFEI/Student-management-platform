@@ -1,4 +1,4 @@
-import {getGrade} from '../services/index.js'
+import {grade} from '../services/class'
 
 
 export default {
@@ -6,7 +6,9 @@ export default {
     namespace: 'class',
   
     // 模块内部的状态
-    state: {},
+    state: {
+        visible:false
+    },
   
     subscriptions: {
       setup({ dispatch, history }) {  // eslint-disable-line
@@ -15,20 +17,20 @@ export default {
   
     // 异步操作
     effects: {
-      *getGrade({ payload }, { call, put }) {  // eslint-disable-line
-        let gradeData=yield call(getGrade,payload)
-        console.log('gradeData...',gradeData)
+      *grade({ payload }, { call, put }) {  // eslint-disable-line
+        let classData=yield call(grade)
+        console.log('classData',classData)
         yield put({
-             type: 'GetGradeList' ,
-             gradeData
-            });
+             type: 'getClassList',
+             classData
+             });
       },
     },
   
     // 同步操作
     reducers: {
-      GetGradeList(state, {gradeData}) {
-        return { ...state, gradeData};
+        getClassList(state, {classData}) {
+        return { ...state, classData };
       },
     },
   
