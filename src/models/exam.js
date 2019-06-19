@@ -1,4 +1,4 @@
-import { examType,getSubject,getList,createItem } from '../services/examManage'
+import { examType,getSubject,getList,createItem,detailExam,studentPaper } from '../services/examManage'
 export default {
     // 命名空间
     namespace: 'exammanage',
@@ -8,7 +8,9 @@ export default {
        examType: null,
        Subject: null,
        ListPaper: null,
-       CreateItem: null
+       CreateItem: null,
+       getDetaildata: null,
+       ClassData: null
     },
   
     subscriptions: {
@@ -44,12 +46,29 @@ export default {
       },
       //创建试卷
       *createItem({payload},{call,put}) {
-        console.log('payload...',payload)
         const ItemCont = yield call(createItem,payload)
         console.log('ItemCont...',ItemCont)
         yield put({
           type: 'getItem',
           payload
+        })
+      },
+      //获取试卷详情
+      *detailExam({payload},{call,put}) {
+        const detail = yield call(detailExam)
+        // console.log('detail...',detail)
+        yield put({
+          type:'getDetail',
+          detail
+        })
+      },
+      //获取学生试卷列表
+      *studentPaper({payload},{call,put}) {
+        const getStudent = yield call(studentPaper)
+        console.log('getStudent...',getStudent)
+        yield put({
+          type:'getStudents',
+          getStudent
         })
       }
     },
@@ -71,7 +90,15 @@ export default {
       //创建试卷
       getItem(state,{payload}) {
         return {...state,CreateItem:payload}
-      }
+      },
+      //获取试卷详情
+      getDetail(state,{detail}) {
+        return {...state,getDetaildata:detail.data} 
+      },
+       //获取学生试卷列表
+       getStudents(state,{getStudent}) {
+         return {...state,ClassData:getStudent.exam}
+       }
     },
   
   };

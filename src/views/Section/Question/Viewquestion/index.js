@@ -52,7 +52,6 @@ class questionView extends Component {
                             </Form.Item>
                             
                         </div>
-
                         <div className='kaoShi'>
                             <div className='shi'>
                                 <h3>考试类型：</h3>
@@ -70,7 +69,6 @@ class questionView extends Component {
                                             }
                                         </Select>
                                     )}
-    
                                 </Form.Item>
                             </div>
                             <div className='shi'>
@@ -89,7 +87,6 @@ class questionView extends Component {
                                         </Select>
                                     )}
                                 </Form.Item>
-                               
                             </div>
                             <Button type="primary" htmlType="submit">查询</Button>
                         </div>

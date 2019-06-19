@@ -14,13 +14,15 @@ import AddExam from '../Exam/Addexam/index'
 import ManageExam from '../Exam/ManageExam/index'
 import ExamDetail from '../Exam/ExamDetail/index'
 import createNew from '../Exam/createNew/index'
+//待批班级
+import AwaitClass from '../Marking/Awaiting/index'
 
 import style from './Main.css';
-import { Menu, Dropdown, Icon, Layout } from 'antd';
+import { Menu, Dropdown, Icon, Layout,Select } from 'antd';
 import { Route,Switch } from 'dva/router'
 import {connect} from 'dva'
 const {Header, Content, Sider } = Layout
-
+const { Option } = Select;
 class Main extends Component {
    state = {
     collapsed: false,
@@ -60,10 +62,12 @@ class Main extends Component {
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
                <img src="/public/bwLOGO.png" alt=""/>
-               <span>国际化
-               <button onClick={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
-               {this.props.locale==='zh'?'中文':'英文'}</button>
-               </span>
+               <Select defaultValue='EngLish'
+               style={{ width: 120 }}
+               onChange={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
+                  <Option value="中文">中文</Option>
+                  <Option value="EngLish">EngLish</Option>
+               </Select>
                <div className={style.person_data}>
                   <Dropdown overlay={menu}>
                       <a className="ant-dropdown-link" href="" style={{color:"#000"}}>
@@ -97,7 +101,7 @@ class Main extends Component {
                 <Route path='/main/class/manage' component={null}/>
                 <Route path='/main/class/classroomManage' component={null}/>
                 <Route path='/main/class/studentManage' component={null}/>
-                <Route path='/main/paper/approval' component={null}/>
+                <Route path='/main/paper/approval' component={AwaitClass}/>
               </Switch>
             </div>
             {/* {this.props.loading?<div className={style.loading}>
@@ -109,7 +113,6 @@ class Main extends Component {
     )
   }
 }
-
 
 
 Main.propTypes = {

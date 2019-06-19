@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {connect} from 'dva'
-import { Breadcrumb,Button,Drawer,Table,  Tag } from 'antd'
+import { Breadcrumb,Button,Drawer,Table, Tag } from 'antd'
 
 import './createItem.scss'
 
@@ -21,6 +21,7 @@ function createNew(props) {
     console.log(data)
     //获取所有试题的数据
     const {AllData} = props
+    console.log(AllData)
     //table表格数据
     const columns = [
         {
@@ -91,7 +92,8 @@ function createNew(props) {
           onClose={onClose}
           visible={visible}
         >
-          <Table columns={columns} dataSource={AllData?AllData.data:null} rowKey={item=>item.exam_id}/>
+          <Table columns={columns} dataSource={AllData?AllData.data:null} 
+          rowKey={item=>item.questions_id} showHeader={false} />
           <div
             style={{
               position: 'absolute',
@@ -104,18 +106,13 @@ function createNew(props) {
               textAlign: 'right',
             }}
           >
-            <Button onClick={onClose} style={{ marginRight: 8 }}>
-              Cancel
-            </Button>
-            <Button onClick={onClose} type="primary">
-              Submit
-            </Button>
           </div>
         </Drawer>
       </div>
             <div className="create-exam">
                 <h2>{data.title}</h2>
-                <p>{'考试时间:'+1+'监考人:爱豆  开始考试时间:'+data.start_time+'阅卷人: 撒旦'}</p>
+                <p>{'考试时间:'+(data.end_time-data.start_time).toLocaleString()*1+'监考人:爱豆  开始考试时间:'
+                +data.start_time+'阅卷人: 撒旦'}</p>
                 <Button type="primary" onClick={()=>props.history.replace('/main/exam/manage')}>创建试卷</Button>
             </div>
         </div>

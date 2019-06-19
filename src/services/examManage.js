@@ -35,3 +35,18 @@ export function createItem(params) {
     })
 }
 
+//获取试卷详情
+export function detailExam() {
+    return request({
+        url:'/exam/exam/w5tcy-g2dts',
+        type:'GET'
+    })
+}
+
+//获取学生试卷列表
+export function studentPaper() {
+    return request({
+        url: '/exam/student',
+        type: 'GET'
+    })
+}
