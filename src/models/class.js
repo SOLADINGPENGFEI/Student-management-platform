@@ -1,4 +1,4 @@
-import {grade,room} from '../services/class'
+import {grade,room,student} from '../services/class'
 
 
 export default {
@@ -26,6 +26,15 @@ export default {
              });
       },
       
+      *student({ payload }, { call, put }) {  // eslint-disable-line
+        let studentData=yield call(student)
+        console.log('studentData',studentData)
+        yield put({
+             type: 'getStudentList',
+             studentData
+             });
+      },
+
       *room({ payload }, { call, put }) {  // eslint-disable-line
         let roomData=yield call(room)
         console.log('roomData',roomData)
@@ -43,6 +52,9 @@ export default {
       },
       getRoomList(state, {roomData}) {
         return { ...state, roomData };
+      },
+      getStudentList(state, {studentData}) {
+        return { ...state, studentData };
       },
     },
   

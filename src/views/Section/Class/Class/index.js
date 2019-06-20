@@ -9,6 +9,7 @@ function Class(props) {
     useEffect(() => {
         props.getClass()
         props.getRoom()
+        props.getStudent()
         
     }, [])
     console.log('props',props)
@@ -125,6 +126,11 @@ const mapDispatchToProps = dispatch => {
         getRoom() {
             dispatch({
                 type: 'class/room'
+            })
+        },
+        getStudent() {
+            dispatch({
+                type: 'class/student'
             })
         }
     }
