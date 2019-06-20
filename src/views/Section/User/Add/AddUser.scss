@@ -1,34 +1,13 @@
-:global {
-  
-    .wrap-user{
-        width:100%;
-        height:100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .ant-breadcrumb {
-            width: 100%;
-            height: 80px;
-            line-height:80px;
-        }
-        .main {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            .section{
-                width: 33%;
-                height: 280px;
-                border: 1px solid #ccc;
-                padding: 10px;
-                box-sizing: border-box;
-                    button {
-                        margin-left: 5px;
-                    }
-                    .ant-form-item {
-                        margin-bottom: 0;
-                    }
-            }
-        }
-        
-    }
+
+.addMain{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.addMain_sec{
+    width: 33.3%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-sizing: border-box;
 }
