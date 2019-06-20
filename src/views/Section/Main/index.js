@@ -14,6 +14,7 @@ import AddExam from '../Exam/Addexam/index'
 import ManageExam from '../Exam/ManageExam/index'
 //班级管理
 import Class from '../Class/Class/index'
+import Room from '../Class/Room/index'
 
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout } from 'antd';
@@ -87,7 +88,7 @@ class Main extends Component {
                 <Route path='/main/exam/add' component={AddExam}/>
                 <Route path='/main/exam/manage' component={ManageExam}/>
                 <Route path='/main/class/manage' component={Class}/>
-                <Route path='/main/class/classroomManage' component={null}/>
+                <Route path='/main/class/classroomManage' component={Room}/>
                 <Route path='/main/class/studentManage' component={null}/>
                 <Route path='/main/paper/approval' component={null}/>
               </Switch>

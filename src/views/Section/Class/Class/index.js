@@ -2,14 +2,13 @@ import React, { useEffect } from 'react'
 import { connect } from 'dva'
 import { Table, Divider, Tag ,Modal, Button} from 'antd';
 import styles from './index.scss'
-import { width } from 'window-size';
 
 
 function Class(props) {
     useEffect(() => {
         props.getClass()
-        props.getRoom()
-        props.getStudent()
+        // props.getRoom()
+        // props.getStudent()
         
     }, [])
     console.log('props',props)
@@ -122,17 +121,17 @@ const mapDispatchToProps = dispatch => {
             dispatch({
                 type: 'class/grade'
             })
-        },
-        getRoom() {
-            dispatch({
-                type: 'class/room'
-            })
-        },
-        getStudent() {
-            dispatch({
-                type: 'class/student'
-            })
         }
+        // getRoom() {
+        //     dispatch({
+        //         type: 'class/room'
+        //     })
+        // },
+        // getStudent() {
+        //     dispatch({
+        //         type: 'class/student'
+        //     })
+        // }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Class);

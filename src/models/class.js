@@ -25,16 +25,6 @@ export default {
              classData
              });
       },
-      
-      *student({ payload }, { call, put }) {  // eslint-disable-line
-        let studentData=yield call(student)
-        console.log('studentData',studentData)
-        yield put({
-             type: 'getStudentList',
-             studentData
-             });
-      },
-
       *room({ payload }, { call, put }) {  // eslint-disable-line
         let roomData=yield call(room)
         console.log('roomData',roomData)
@@ -45,6 +35,16 @@ export default {
       },
     },
   
+      
+    *student({ payload }, { call, put }) {  // eslint-disable-line
+      let studentData=yield call(student)
+      console.log('studentData',studentData)
+      yield put({
+           type: 'getStudentList',
+           studentData
+           });
+    },
+
     // 同步操作
     reducers: {
         getClassList(state, {classData}) {
