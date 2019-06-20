@@ -8,6 +8,8 @@ import { width } from 'window-size';
 function Class(props) {
     useEffect(() => {
         props.getClass()
+        props.getRoom()
+        
     }, [])
     console.log('props',props)
     let { classData ,visible} = props
@@ -102,8 +104,6 @@ function Class(props) {
                     onCancel={handleCancel}
                     >
                     <p>Some contents...</p>
-                    <p>Some contents...</p>
-                    <p>Some contents...</p>
                     </Modal>
                 </div>
                 <Table columns={columns} dataSource={data} />
@@ -120,6 +120,11 @@ const mapDispatchToProps = dispatch => {
         getClass() {
             dispatch({
                 type: 'class/grade'
+            })
+        },
+        getRoom() {
+            dispatch({
+                type: 'class/room'
             })
         }
     }

@@ -1,4 +1,4 @@
-import {grade} from '../services/class'
+import {grade,room} from '../services/class'
 
 
 export default {
@@ -25,12 +25,24 @@ export default {
              classData
              });
       },
+      
+      *room({ payload }, { call, put }) {  // eslint-disable-line
+        let roomData=yield call(room)
+        console.log('roomData',roomData)
+        yield put({
+             type: 'getRoomList',
+             roomData
+             });
+      },
     },
   
     // 同步操作
     reducers: {
         getClassList(state, {classData}) {
         return { ...state, classData };
+      },
+      getRoomList(state, {roomData}) {
+        return { ...state, roomData };
       },
     },
   

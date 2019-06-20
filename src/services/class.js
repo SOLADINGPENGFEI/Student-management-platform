@@ -7,3 +7,13 @@ export function grade() {
       method:'GET'
     })
   }
+
+
+  //获取全部教室
+export function room() {
+  return request({
+    url:'/manger/room',
+    method:'GET'
+  })
+}
+  
