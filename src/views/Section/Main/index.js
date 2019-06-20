@@ -14,6 +14,8 @@ import AddExam from '../Exam/Addexam/index'
 import ManageExam from '../Exam/ManageExam/index'
 import ExamDetail from '../Exam/ExamDetail/index'
 import createNew from '../Exam/createNew/index'
+//班级管理
+import Classroom from '../Class/Classroom/index'
 //待批班级
 import AwaitClass from '../Marking/Awaiting/index'
 
@@ -51,13 +53,12 @@ class Main extends Component {
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+          <a target="_blank" rel="noopener noreferrer" href="http://www.baidu.com/">
             退出登录
           </a>
         </Menu.Item>
       </Menu>
     );
-    
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
@@ -65,8 +66,8 @@ class Main extends Component {
                <Select defaultValue='EngLish'
                style={{ width: 120 }}
                onChange={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
-                  <Option value="中文">中文</Option>
-                  <Option value="EngLish">EngLish</Option>
+                 <Option value="EngLish">EngLish</Option>
+                 <Option value="中文">中文</Option>
                </Select>
                <div className={style.person_data}>
                   <Dropdown overlay={menu}>
@@ -82,7 +83,7 @@ class Main extends Component {
             <Sider style={{ width: 200,height:"100%"}}>
                 <MainComp />
             </Sider>
-          <Content style={{ padding: '0 30px' }}>
+          <Content style={{ padding: '0 25px' }}>
             <Switch>
                 <Route path='/main/question/add' component={Addquestion}/>
                 <Route path='/main/question/type' component={typeQuestion}/>
@@ -99,7 +100,7 @@ class Main extends Component {
                 <Route path='/main/exam/detail' component={ExamDetail}/>
                 <Route path='/main/exam/edit' component={createNew} />
                 <Route path='/main/class/manage' component={null}/>
-                <Route path='/main/class/classroomManage' component={null}/>
+                <Route path='/main/class/classroomManage' component={Classroom}/>
                 <Route path='/main/class/studentManage' component={null}/>
                 <Route path='/main/paper/approval' component={AwaitClass}/>
               </Switch>

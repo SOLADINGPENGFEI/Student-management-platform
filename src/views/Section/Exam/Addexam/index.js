@@ -87,7 +87,7 @@ function AddExam(props) {
                 start_time:values.startTime._d.toLocaleString(),
                 end_time: values.endTime._d.toLocaleString()
             })
-            let addItem = localStorage.setItem('exam',JSON.stringify({
+             localStorage.setItem('exam',JSON.stringify({
                 subject_id:values.examTest,
                 exam_id:values.examType,
                 title:values.text,

@@ -8,6 +8,7 @@ function Detail(props) {
         props.getAllData()
     },[])
     const {AllData} = props
+    console.log(AllData)
     const detailID = props.history.location.search.slice(1)
     const detail = AllData?AllData.data.filter(item=>{
         if(item.questions_id===detailID){
