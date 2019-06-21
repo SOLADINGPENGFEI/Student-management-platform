@@ -8,7 +8,11 @@ export default {
   
     // 模块内部的状态
     state: {
-        isLogin: 0
+        isLogin: 0,
+        userInfo: {},
+        viewAuthority: [],  // 用户所拥有的视图权限
+        myView: [],  // 拥有权限的前端路由
+        forbiddenView: [] //没有权限访问的路由
     },
     
     // 订阅路由跳转

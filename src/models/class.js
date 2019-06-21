@@ -7,7 +7,7 @@ export default {
   
     // 模块内部的状态
     state: {
-        visible:false
+       
     },
   
     subscriptions: {
