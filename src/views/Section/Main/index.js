@@ -16,6 +16,7 @@ import ExamDetail from '../Exam/ExamDetail/index'
 import createNew from '../Exam/createNew/index'
 //班级管理
 import Classroom from '../Class/Classroom/index'
+import Student from '../Class/Student/index'
 //待批班级
 import AwaitClass from '../Marking/Awaiting/index'
 
@@ -101,7 +102,7 @@ class Main extends Component {
                 <Route path='/main/exam/edit' component={createNew} />
                 <Route path='/main/class/manage' component={null}/>
                 <Route path='/main/class/classroomManage' component={Classroom}/>
-                <Route path='/main/class/studentManage' component={null}/>
+                <Route path='/main/class/studentManage' component={Student}/>
                 <Route path='/main/paper/approval' component={AwaitClass}/>
               </Switch>
             </div>

@@ -23,21 +23,23 @@ function Class(props) {
       ];
     //弹框
     const [visible,newvisible] = useState(false)
+    const [confirmLoading,newconfirmLoading] = useState(false)
     let showModal = () => {
         newvisible(true)
       };
     let handleCancel = () => {
         newvisible(false)
     }
-    //Form表单
+   //Form表单
     let handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-          if (!err) {
+        if (!err) {
             console.log('Received values of form: ', values);
-          }
+        }
         });
-      };
+    };
+    
     
     const {getFieldDecorator} = props.form
     //请求数据
@@ -65,6 +67,7 @@ function Class(props) {
                     visible={visible}
                     footer={null}
                     onCancel={handleCancel}
+                    confirmLoading={confirmLoading}
                     >
                     <Form.Item label="教室号">
                     {getFieldDecorator('grade', {
@@ -75,10 +78,11 @@ function Class(props) {
                     )}
                     </Form.Item>
                         <Button onClick={handleCancel}>取消</Button>
-                        <Button type="primary" htmlType="submit">提交</Button>
+                        <Button type="primary" htmlType='submit'>提交</Button>
                     </Modal>
-                  
+                    
                 </div>
+                
             </Form>
             <Table columns={columns} dataSource={getAllClass} rowKey={item=>item.room_id} />
         </div>
