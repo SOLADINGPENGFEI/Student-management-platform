@@ -1,13 +1,5 @@
 import request from '../utils/request';
 
-// export function query() {
-//   return request('/api/users'); 
-// }
-// export function UserInfo() {
-//   return request({
-//     url:"/user/userInfo",
-//   });
-// }
 
 
 //登录接口
@@ -100,5 +92,12 @@ export function insertType(payload) {
     url: '/exam/insertQuestionsType',
     method: 'GET',
     payload
+  })
+}
+
+//获取用户权限
+export function getViewAuthority(user_id) {
+  return request({
+    url: '/user/new?user_id='+user_id
   })
 }

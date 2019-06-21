@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
 import MainComp from '@/components/Menu'
-//试题管理
-import Addquestion from '../Question/Addquestion/index'
-import typeQuestion from '../Question/Typequestion/index'
-import questionView from '../Question/Viewquestion/index'
-import EditQuestion from '../Question/EditQuestion/index'
-import DetailCont from '../Question/Detail/index'
-//用户管理
-import AddUser from '../User/Add/index'
-import Viewuser from '../User/View/index'
-//考试管理
-import AddExam from '../Exam/Addexam/index'
-import ManageExam from '../Exam/ManageExam/index'
-import ExamDetail from '../Exam/ExamDetail/index'
-import createNew from '../Exam/createNew/index'
-//班级管理
-import Classroom from '../Class/Classroom/index'
-import Student from '../Class/Student/index'
-//待批班级
-import AwaitClass from '../Marking/Awaiting/index'
 
 import style from './Main.css';
 import { Menu, Dropdown, Icon, Layout,Select } from 'antd';
-import { Route,Switch } from 'dva/router'
+import { Route,Switch,Redirect } from 'dva/router'
 import {connect} from 'dva'
 const {Header, Content, Sider } = Layout
 const { Option } = Select;
@@ -35,7 +16,11 @@ class Main extends Component {
       collapsed: !this.state.collapsed,
     });
   };
+ 
   render() {
+    if(!this.props.myView.length) {
+        return null
+    }
     const menu = (
       <Menu style={{marginTop:"30px"}}>
         <Menu.Item>
@@ -60,6 +45,7 @@ class Main extends Component {
         </Menu.Item>
       </Menu>
     );
+    console.log(this.props.myView)
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
@@ -86,13 +72,30 @@ class Main extends Component {
             </Sider>
           <Content style={{ padding: '0 25px' }}>
             <Switch>
-                <Route path='/main/question/add' component={Addquestion}/>
+                <Redirect exact from="/main" to="/main/question/add" />
+                {/* 渲染该用户拥有的路由 */}
+                
+                {
+                  this.props.myView.map((item)=>{
+                    if(item.children) {
+                      return item.children.map((value)=>{
+                        if(value.name) {
+                          return <Route key={value.id} path={value.path} component={value.component} />
+                        } else {
+                          return <Route key={value.id} path={value.path} component={value.component} />
+                        }
+                        
+                      })
+                    }
+                  })
+                }
+                {/* <Route path='/main/question/add' component={Addquestion}/>
                 <Route path='/main/question/type' component={typeQuestion}/>
                 <Route path='/main/question/view' component={questionView}/>
                 <Route path='/main/question/viewEdit' component={EditQuestion}/>
-                <Route path='/main/question/viewDetail' component={DetailCont}/>
+                <Route path='/main/question/viewDetail' component={DetailCont}/> */}
             </Switch>
-            <div>
+            {/* <div>
               <Switch>
                 <Route path='/main/user/add' component={AddUser}/>
                 <Route path='/main/user/view' component={Viewuser}/>
@@ -105,7 +108,7 @@ class Main extends Component {
                 <Route path='/main/class/studentManage' component={Student}/>
                 <Route path='/main/paper/approval' component={AwaitClass}/>
               </Switch>
-            </div>
+            </div> */}
             {/* {this.props.loading?<div className={style.loading}>
               <Spin/>
             </div>:null} */}
@@ -123,7 +126,9 @@ Main.propTypes = {
 const mapStateToProps = state => {
     return {
       // loading: state.loading.global,
-      locale: state.global.locale
+      locale: state.global.locale,
+      myView: state.user.myView,
+      forbiddenView: state.user.forbiddenView
     }
 }
 const mapDispatchToProps = dispatch => {

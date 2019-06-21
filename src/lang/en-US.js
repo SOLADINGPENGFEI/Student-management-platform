@@ -13,6 +13,6 @@ export default {
     'router.main.class.manage':'class management',
     'router.main.class.classroomManage':'Classroom management',
     'router.main.class.studentManage':'student management',
-    'router./main/paper':'Marking management',
-    'router./main/paper/approval':'Awaiting approval class'
+    'router.main.paper':'Marking management',
+    'router.main.paper.approval':'Awaiting approval class'
 }

@@ -1,4 +1,4 @@
-import { Allclass,Delclassroom,Addclassroom,Delclass,Addclass} from '../services/classManage'
+import { Allclass,Delclassroom,Addclassroom,Delclass,Addclass,studentInfo} from '../services/classManage'
 export default {
     // 命名空间
     namespace: 'class',
@@ -9,7 +9,8 @@ export default {
         getAddroom: null,
         getDelroom: null,
         getAddClass: null,
-        getDelClass: null
+        getDelClass: null,
+        getstudentData: null
     },
   
     subscriptions: {
@@ -63,6 +64,15 @@ export default {
               type: 'DEL',
               delMsg
           })
+      },
+      //获取学生信息
+      *studentInfo({payload},{call,put}) {
+          const studentData = yield call(studentInfo)
+          console.log('studentData...',studentData)
+          yield put({
+              type: 'GetInfo',
+              studentData
+          })
       }
     },
   
@@ -87,6 +97,10 @@ export default {
         //删除班级
         DEL(state,{delMsg}) {
             return {...state,getDelClass:delMsg}
+        },
+        //获取学生信息
+        GetInfo(state,{studentData}) {
+            return {...state,getstudentData:studentData}
         }
     },
   

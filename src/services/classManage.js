@@ -39,3 +39,10 @@ export function Addclass(params) {
         data: params
     })
 }
+//获取学生信息
+export function studentInfo() {
+    return request({
+        url: '/student/info',
+        type: 'GET'
+    })
+}

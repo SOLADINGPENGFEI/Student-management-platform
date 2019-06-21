@@ -13,6 +13,6 @@ export default {
     'router.main.class.manage':'班级管理',
     'router.main.class.classroomManage':'教室管理',
     'router.main.class.studentManage':'学生管理',
-    'router./main/paper':'阅卷管理',
-    'router./main/paper/approval':'待批班级'
+    'router.main.paper':'阅卷管理',
+    'router.main.paper.approval':'待批班级'
 }
