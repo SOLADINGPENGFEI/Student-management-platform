@@ -67,12 +67,12 @@ export default {
             component: ViewQuestions
         },{
             // name: 'router.main.question.viewEdit',
-            id: 'main-viewEdit',
+            id: 'main-editQuestions',
             path: '/main/question/viewEdit',
             component: EditQuestions
         },{
             // name: 'router.main.question.viewDetail',
-            id: 'main-viewDetail',
+            id: 'main-questionsDetail',
             path: '/main/question/viewDetail',
             component: DetailQuestions
         }]

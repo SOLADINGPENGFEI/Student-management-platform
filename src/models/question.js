@@ -14,7 +14,8 @@ export default {
   
     // 模块内部的状态
     state: {
-        addExamCode: 0
+        addExamCode: 0,
+        allData: []
     },
   
     subscriptions: {
@@ -51,7 +52,7 @@ export default {
       *addQuestion({payload},{call,put}) {
         // console.log('payload...',payload)
         let addData = yield call(addQuestion,payload)
-        console.log('addData...',addData)
+        // console.log('addData...',addData)
         yield put({
           type:'addquestion',
           payload: addData.code === 1? 1:-1
@@ -67,7 +68,7 @@ export default {
       },
       *allQuestion({payload},{call,put}) {
         let AllData = yield call(allQuestion)
-          console.log('AllData...',AllData)
+          // console.log('AllData...',AllData)
           yield put({
             type: 'getAllData',
             AllData
@@ -83,7 +84,7 @@ export default {
       //更新试题
       *updatequestion({payload},{call,put}) {
         let updateData = yield call(updatequestion,payload)
-        console.log('updateData...',updateData)
+        // console.log('updateData...',updateData)
         yield put({
           type: 'getUpdate',
           updateData
@@ -91,17 +92,18 @@ export default {
       },
       //按条件查询试题
       *FindData({payload},{call,put}) {
-        let findquestion = yield call(FindData)
-        console.log('findquestion...',findquestion)
+        // console.log('payload...',payload)
+        let AllData = yield call(FindData,payload)
+        // console.log('AllData...',AllData)
         yield put({
-          type: 'Find',
-          findquestion
+          type: 'getAllData',
+          AllData
         })
       },
       //添加试题类型
       *insertType({payload},{call,put}) {
         let typeData = yield call(insertType,payload)
-        console.log('insertType...',typeData)
+        // console.log('insertType...',typeData)
         yield put({
           type: 'getType',
           typeData
@@ -128,7 +130,7 @@ export default {
         return {...state,typeData}
       },
       getAllData(state,{AllData}) {
-        return {...state, AllData}
+        return {...state, allData:AllData.data}
       },
       UserId(state, {userData}) {
         return {...state, userData}

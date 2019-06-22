@@ -11,17 +11,18 @@ class questionView extends Component {
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
         if (!err) {
-            console.log(values.questionsType)
           this.props.getCondition({
-              questions_type_id:values.questionsType,
+               questions_type_id:values.questionsType,
                subject_id:values.subjectType,
-               exam_id:values.ExamType
+               exam_id:values.ExamType,
            })
         }
       });
     };
+
     render() {
-        const {subdata,data,questionData,AllData,findquestion} = this.props
+        const {subdata,data,questionData,allData,findquestion} = this.props
+       
         console.log(findquestion)
         const {getFieldDecorator} = this.props.form
         return (
@@ -94,7 +95,7 @@ class questionView extends Component {
                 </div>
                 <div className='list'>
                   {
-                        AllData?AllData.data.map((item) => 
+                        allData?allData.map((item) => 
                             <div key={item.questions_id} className='dl'>
                             <div className='dt'  onClick={()=>this.detailCont(item.questions_id)}>
                                 <div className='titles'>{item.title}</div>
@@ -158,9 +159,11 @@ const mapDispatch = dispatch => {
         })
       },
       //按条件获取试题查询借口 /exam/questions/condition
-      getCondition(){
+      getCondition(payload){
+          console.log(payload)
           dispatch({
-              type:"exam/FindData"
+              type:"exam/FindData",
+              payload
           })
       }
    }

@@ -80,10 +80,11 @@ export function updatequestion(params) {
   })
 }
 //按条件查询试题
-export function FindData() {
+export function FindData(params) {
   return request({
     url: '/exam/questions/condition',
-    method: 'GET'
+    method: 'GET',
+    params
   })
 }
 //添加试题类型
