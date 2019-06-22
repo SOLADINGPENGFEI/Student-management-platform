@@ -16,18 +16,18 @@ function MenuComp(props) {
   >
     {
       props.myView.map((item, index)=>{
-        return <SubMenu key={item.name} title={
+        return <SubMenu key={index} title={
           <span>
             <Icon type="user" />
-            {props.intl.formatMessage({id: item.name})}
+            {props.intl.formatMessage({id: item.name?item.name:null})}
           </span>
         }>{
           item.children.map((value, key)=>{
-            return <Menu.Item key={key}>
+            return value.name?<Menu.Item key={value.id}>
               <Link to={value.path}>
                 {props.intl.formatMessage({id: value.name})}
               </Link>
-            </Menu.Item>
+            </Menu.Item>:<Link to={value.path}/>
           })
         }
         </SubMenu>

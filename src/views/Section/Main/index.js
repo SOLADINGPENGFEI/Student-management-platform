@@ -79,12 +79,7 @@ class Main extends Component {
                   this.props.myView.map((item)=>{
                     if(item.children) {
                       return item.children.map((value)=>{
-                        if(value.name) {
                           return <Route key={value.id} path={value.path} component={value.component} />
-                        } else {
-                          return <Route key={value.id} path={value.path} component={value.component} />
-                        }
-                        
                       })
                     }
                   })

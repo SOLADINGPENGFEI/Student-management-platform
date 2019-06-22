@@ -66,12 +66,12 @@ export default {
             path: '/main/question/view',
             component: ViewQuestions
         },{
-            name: 'router.main.question.viewEdit',
+            // name: 'router.main.question.viewEdit',
             id: 'main-viewEdit',
             path: '/main/question/viewEdit',
             component: EditQuestions
         },{
-            name: 'router.main.question.viewDetail',
+            // name: 'router.main.question.viewDetail',
             id: 'main-viewDetail',
             path: '/main/question/viewDetail',
             component: DetailQuestions
@@ -102,12 +102,12 @@ export default {
             path: '/main/exam/manage',
             component: ManageExam
         },{
-            name: 'router.main.exam.detail',
+            // name: 'router.main.exam.detail',
             id: 'main-examDetail',
             path: '/main/exam/detail',
             component: ExamDetail
         },{
-            name: 'router.main.exam.edit',
+            // name: 'router.main.exam.edit',
             id: 'main-editQuestions',
             path: '/main/exam/edit',
             component: EditExam
