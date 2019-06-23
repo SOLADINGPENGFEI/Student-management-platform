@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { connect } from 'dva'
-import { Table, Divider, Tag ,Modal, Button} from 'antd';
+import { Table, Divider, Tag, Modal, Button, Input } from 'antd';
 import styles from './index.scss'
 
 
 function Class(props) {
     useEffect(() => {
         props.getStudent()
-        
+
     }, [])
-    console.log('props',props)
-    let { classData ,visible} = props
+    console.log('props', props)
+    let { classData, visible } = props
     console.log(classData)
-    
+
     const columns = [
         {
             title: '班级名',
@@ -56,24 +56,27 @@ function Class(props) {
         }
     })
     console.log('data', data)
-    function showModal(){
+    function showModal() {
         console.log(1)
-        visible=true
+        visible = true
     }
-    function handleOk(e){
+    function handleOk(e) {
         console.log(e)
-        visible=false
+        visible = false
     }
-    function handleCancel(e){
+    function handleCancel(e) {
         console.log(e)
-        visible=false
+        visible = false
     }
- 
+
     return (
         <div>
             <h2 className={styles.title}>学生管理</h2>
             <div className={styles.center}>
-                 {/* <div>
+                <div className="example-input">
+                    <Input placeholder="default size" />
+                </div>
+                {/* <div>
                     <Button type="primary" onClick={showModal}>
                     +添加班级
                     </Button>
