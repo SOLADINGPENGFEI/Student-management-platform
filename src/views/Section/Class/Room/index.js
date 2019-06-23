@@ -10,7 +10,7 @@ function Room(props) {
         props.getRoom()
         
     }, [])
-    console.log('props',props)
+    
     
    
     function showModal(){
@@ -28,6 +28,7 @@ function Room(props) {
     //删除班级
     function confirm(e) {
         console.log(e);
+        console.log('点击确定删除props',props)
         message.success('Click on Yes');
       }
       
@@ -59,8 +60,8 @@ function Room(props) {
     title="确定要删除班级吗"
     onConfirm={confirm}
     onCancel={cancel}
-    okText="Yes"
-    cancelText="No"
+    okText="确定"
+    cancelText="取消"
   >
     <span>删除</span>
   </Popconfirm>
@@ -70,7 +71,7 @@ function Room(props) {
     ];
     const data = roomData && roomData.data.map((item, index) => {
         return {
-            key: index,
+            key: item.room_id,
             tags: item.room_text
         }
     })

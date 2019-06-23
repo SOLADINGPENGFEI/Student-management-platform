@@ -18,8 +18,8 @@ function Class(props) {
     let { classData,roomData} = props
     console.log(classData)
     
-    function del(){
-        console.log('删除')
+    function del(key){
+        console.log('删除',key)
     }
 
     const columns = [
@@ -47,11 +47,11 @@ function Class(props) {
         {
             title: '操作',
             key: 'action',
-            render: (text, record) => (
+            render: (text, record,key) => (
                 <span>
                     <a href="javascript:;">修改</a>
                     <Divider type="vertical" />
-                    <a href="javascript:;" onClick={del}>删除</a>
+                    <a href="javascript:;" onClick={del.bind(key)}>删除</a>
                 </span>
             ),
         },
