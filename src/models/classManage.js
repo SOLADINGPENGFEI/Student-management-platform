@@ -61,7 +61,7 @@ export default {
       //添加班级
       *Addclass({payload},{call,put}) {
           const newClass = yield call(Addclass,payload)
-        //   console.log('newClass...',newClass)
+          console.log('newClass...',newClass)
           yield put({
               type: 'Addnew',
               newClass

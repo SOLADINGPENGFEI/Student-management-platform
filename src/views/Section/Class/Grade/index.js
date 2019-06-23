@@ -6,7 +6,18 @@ import './grade.scss'
 const {Option} = Select
 function Grade(props) {
     const [visible,newVisible] = useState(false)
-    let showModal = () => {
+     //请求数据
+     useEffect(()=>{
+        props.getData()
+        props.getClass()
+        props.getSubject()
+        
+    },[])
+    //获取数据
+    const {getMessage,getAllClass,getSubjectData} = props
+    
+    let showModal = (e) => {
+        console.log(e)
         newVisible(true)
       };
     
@@ -21,9 +32,14 @@ function Grade(props) {
       //Form
       let handleSubmit = e => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        props.form.validateFields((err, values) => {
           if (!err) {
             console.log('Received values of form: ', values);
+            props.addClass({
+                grade_name:values.grade,
+                room_id:values.class,
+                subject_id:values.course
+            })
           }
         });
       };
@@ -49,21 +65,20 @@ function Grade(props) {
         {
             title: '操作',
             key: 'action',
-            render: (text, record) => (
+            render: (text, record,index) => (
               <span>
-                  {console.log(text.grade_id)}
                 <a onClick={showModal}>修改 </a>
                 <Modal
                     title="添加班级"
                     visible={visible}
-                    onOk={handleOk}
                     onCancel={handleCancel}
+                    footer={false}
                     >
                     <Form onSubmit={handleSubmit}>
                     <Form.Item label="班级名">
                         {getFieldDecorator('grade', {
                             rules: [{ required: true, message: 'Please input your gradename!' }],
-                            initialValue:text.grade_name
+                            initialValue:getMessage[index].grade_name
                         })(
                             <Input placeholder="班级名" />,
                         )}
@@ -71,7 +86,7 @@ function Grade(props) {
                     <Form.Item label="教室号">
                         {getFieldDecorator('class', {
                             rules: [{ required: true, message: 'Please input your classname!' }],
-                            initialValue:text.room_text
+                            initialValue:getMessage[index].room_text
                         })(
                             <Select>
                                 {
@@ -85,7 +100,7 @@ function Grade(props) {
                     <Form.Item label="课程名">
                         {getFieldDecorator('course', {
                             rules: [{ required: true, message: 'Please input your coursename!' }],
-                            initialValue:text.subject_text
+                            initialValue:getMessage[index].subject_text
                         })(
                             <Select>
                                 {
@@ -96,6 +111,8 @@ function Grade(props) {
                             </Select>
                         )}
                     </Form.Item>
+                    <Button onClick={handleCancel}>取消</Button>
+                    <Button type="primary" htmlType="submit" onClick={handleOk}>提交</Button>
                     </Form>
                     </Modal>
                 <Divider type="vertical" />
@@ -103,15 +120,7 @@ function Grade(props) {
               </span>
             ),
           }]
-    //请求数据
-    useEffect(()=>{
-        props.getData()
-        props.getClass()
-        props.getSubject()
-    },[])
-    //获取数据
-    const {getMessage,getAllClass,getSubjectData} = props
-    console.log(getSubjectData)
+   
    
     return <div>
          <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
@@ -126,7 +135,6 @@ function Grade(props) {
                     title="添加班级"
                     visible={visible}
                     onOk={handleOk}
-                    onCancel={handleCancel}
                     >
                     <Form onSubmit={handleSubmit}>
                     <Form.Item label="班级名">
@@ -162,6 +170,7 @@ function Grade(props) {
                             </Select>
                         )}
                     </Form.Item>
+                    
                     </Form>
                     </Modal>
                 <Table columns={columns} dataSource={getMessage} />
@@ -192,6 +201,13 @@ const mapDispatch = dispatch => {
         getSubject() {
             dispatch({
                 type:'class/subjectMsg'
+            })
+        },
+        //添加班级
+        addClass(payload) {
+            dispatch({
+                type:'class/Addclass',
+                payload
             })
         }
     }
