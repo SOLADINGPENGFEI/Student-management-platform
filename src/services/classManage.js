@@ -46,3 +46,10 @@ export function studentInfo() {
         type: 'GET'
     })
 }
+//获取已经分配教室的班级
+export function allocation() {
+    return request({
+        url: '/manger/grade',
+        type: 'GET'
+    })
+}

@@ -33,6 +33,9 @@ const ExamDetail = dynamic({
 const EditExam = dynamic({
     component: () => import('@/views/Section/Exam/createNew/index.js')
 })
+const Grademanage = dynamic({
+    component: () => import('@/views/Section/Class/Grade/index.js')
+})
 const Classroom = dynamic({
     component: () => import('@/views/Section/Class/Classroom/index.js')
 })
@@ -42,9 +45,7 @@ const Student = dynamic({
 const AwaitClass = dynamic({
     component: () => import('@/views/Section/Marking/Awaiting/index.js')
 })
-// const ViewQuestions = dynamic({
-//     component: () => import('@/views/Section/Question/Viewquestion/index.js')
-// })
+
 
 
 export default {
@@ -118,7 +119,7 @@ export default {
             name: 'router.main.class.manage',
             id: 'main-grade',
             path: '/main/class/manage',
-            component: null
+            component: Grademanage
         },{
             name: 'router.main.class.classroomManage',
             id: 'main-room',
