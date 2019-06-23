@@ -53,3 +53,17 @@ export function allocation() {
         type: 'GET'
     })
 }
+//学生管理
+export function studentMsg() {
+    return request({
+        url: '/manger/student',
+        type: 'GET'
+    })
+}
+//获取所有的课程
+export function subjectMsg() {
+    return request({
+        url: '/exam/subject',
+        type: 'GET'
+    })
+}

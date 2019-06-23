@@ -19,28 +19,28 @@ function Student(props) {
     const columns = [
         {
           title: '姓名',
-          dataIndex: 'name',
-          key: 'name',
+          dataIndex: 'student_name',
+          key: 'student_name',
         },
         {
           title: '学号',
-          dataIndex: 'age',
-          key: 'age',
+          dataIndex: 'student_id',
+          key: 'student_id',
         },
         {
           title: '班级',
-          dataIndex: 'address',
-          key: 'address',
+          dataIndex: 'grade_name',
+          key: 'grade_name',
         },
         {
             title: '教室',
-            dataIndex: 'grade',
-            key: 'grade',
+            dataIndex: 'room_text',
+            key: 'room_text',
         },
         {
             title: '密码',
-            dataIndex: 'pwd',
-            key: 'pwd',
+            dataIndex: 'student_pwd',
+            key: 'student_pwd',
         },
         {
           title: '操作',
@@ -54,11 +54,13 @@ function Student(props) {
       ];
       //请求数据
       useEffect(()=>{
-          props.getInfo()
+          props.getgrade()
+          props.getStudent()
+          props.getClass()
       },[])
       //获取数据
-      const { getstudentData } = props
-      console.log(getstudentData)
+      const { getMessage,getAllStudent,getAllClass } = props
+      console.log(getMessage)
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
             <Breadcrumb.Item>学生管理</Breadcrumb.Item>
@@ -78,7 +80,11 @@ function Student(props) {
                             
                         })(
                             <Select style={{width:200}} placeholder="请选择班级号">
-                                 <Option  value="jack">Jack</Option>
+                                {
+                                    getAllClass?getAllClass.map(item=>(
+                                        <Option  key={item.room_id} value={item.room_text}>{item.room_text}</Option>
+                                    )):null
+                                }
                             </Select>
                     )}
                 </Form.Item>
@@ -87,7 +93,11 @@ function Student(props) {
                             
                         })(
                             <Select style={{width:200}} placeholder="班级名">
-                                 <Option value="jack">Jack</Option>
+                                {
+                                    getMessage?getMessage.map(item=>(
+                                        <Option key={item.grade_id} value={item.grade_name}>{item.grade_name}</Option>
+                                    )):null
+                                }
                             </Select>
                     )}
                 </Form.Item>
@@ -99,7 +109,7 @@ function Student(props) {
                 </Form.Item>
             </Form>
             </div>
-            <Table columns={columns} />
+            <Table columns={columns} dataSource={getAllStudent} rowKey={item=>item.student_id}/>
         </div>
     </div>
 }
@@ -108,9 +118,19 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
     return {
-        getInfo() {
+        getgrade() {
             dispatch({
-                type:'class/studentInfo'
+                type:'class/allocation'
+            })
+        },
+        getStudent() {
+            dispatch({
+                type:'class/studentMsg'
+            })
+        },
+        getClass() {
+            dispatch({
+                type:'class/Allclass'
             })
         }
     }
