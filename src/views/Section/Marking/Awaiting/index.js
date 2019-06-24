@@ -11,6 +11,7 @@ function AwaitGrade(props) {
     //获取数据
     const {ClassData} = props
     console.log(ClassData)
+
     //table表格数据
     const columns = [
         {
