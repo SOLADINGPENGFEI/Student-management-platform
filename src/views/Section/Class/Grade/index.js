@@ -17,7 +17,6 @@ function Grade(props) {
     const {getMessage,getAllClass,getSubjectData} = props
     
     let showModal = (e) => {
-        console.log(e)
         newVisible(true)
       };
     
@@ -36,9 +35,9 @@ function Grade(props) {
           if (!err) {
             console.log('Received values of form: ', values);
             props.addClass({
-                grade_name:values.grade,
-                room_id:values.class,
-                subject_id:values.course
+                "grade_name":values.grade,
+                "room_id":values.class,
+                "subject_id":values.course
             })
           }
         });
@@ -91,7 +90,7 @@ function Grade(props) {
                             <Select>
                                 {
                                     getAllClass?getAllClass.map(item=>(
-                                        <Option key={item.room_id} value={item.room_text}>{item.room_text}</Option>
+                                        <Option key={item.room_id} value={item.room_id}>{item.room_text}</Option>
                                     )):null
                                 }
                             </Select>
@@ -105,7 +104,7 @@ function Grade(props) {
                             <Select>
                                 {
                                     getSubjectData?getSubjectData.map(item=>(
-                                        <Option key={item.subject_id} value={item.subject_text}>{item.subject_text}</Option>
+                                        <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
                                     )):null
                                 }
                             </Select>
@@ -116,11 +115,23 @@ function Grade(props) {
                     </Form>
                     </Modal>
                 <Divider type="vertical" />
-                <a>删除</a>
+                <a onClick={()=>deleteGrade(index)}>删除</a>
               </span>
             ),
           }]
-   
+        //删除班级
+        let gradeID
+        let deleteGrade = i => {
+           gradeID = getMessage.filter((item,index)=>{
+                if(i===index) {
+                    return item
+                }
+            })
+            console.log(gradeID)
+            props.delClass({
+                grade_id: gradeID[0].grade_id
+            })
+        }
    
     return <div>
          <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
@@ -151,7 +162,7 @@ function Grade(props) {
                             <Select>
                                 {
                                     getAllClass?getAllClass.map(item=>(
-                                        <Option key={item.room_id} value={item.room_text}>{item.room_text}</Option>
+                                        <Option key={item.room_id} value={item.room_id}>{item.room_text}</Option>
                                     )):null
                                 }
                             </Select>
@@ -164,7 +175,7 @@ function Grade(props) {
                             <Select>
                                 {
                                     getSubjectData?getSubjectData.map(item=>(
-                                        <Option key={item.subject_id} value={item.subject_text}>{item.subject_text}</Option>
+                                        <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>
                                     )):null
                                 }
                             </Select>
@@ -205,8 +216,16 @@ const mapDispatch = dispatch => {
         },
         //添加班级
         addClass(payload) {
+            console.log(payload)
             dispatch({
                 type:'class/Addclass',
+                payload
+            })
+        },
+        //删除班级
+        delClass(payload) {
+            dispatch({
+                type: 'class/Delclass',
                 payload
             })
         }

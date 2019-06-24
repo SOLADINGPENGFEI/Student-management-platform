@@ -4,7 +4,7 @@ import request from '../utils/request';
 export function usersShow() {
     return request({
         url:'/user/user',
-        type: 'GET'
+        method: 'GET'
     })
 }
 
@@ -12,7 +12,7 @@ export function usersShow() {
 export function USerIdentity() {
     return request({
         url:'/user/identity',
-        type:'GET'
+        method:'GET'
     })
 }
 
@@ -20,7 +20,7 @@ export function USerIdentity() {
 export function  api_authority() {
     return request({
         url:'/user/identity_api_authority_relation',
-        type:'GET'
+        method:'GET'
     })
 }
 
@@ -28,7 +28,7 @@ export function  api_authority() {
 export function  identity_api_authority_relation() {
     return request({
         url:'/user/identity_api_authority_relation',
-        type:'GET'
+        method:'GET'
     })
 }
 
@@ -36,7 +36,7 @@ export function  identity_api_authority_relation() {
 export function  view_authority() {
     return request({
         url:'/user/view_authority',
-        type:'GET'
+        method:'GET'
     })
 }
  
@@ -44,6 +44,6 @@ export function  view_authority() {
 export function  identity_view_authority_relation() {
     return request({
         url:'/user/identity_view_authority_relation',
-        type:'GET'
+        method:'GET'
     })
 }

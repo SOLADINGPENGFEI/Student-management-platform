@@ -61,6 +61,7 @@ export default {
       },
       //添加班级
       *Addclass({payload},{call,put}) {
+          console.log('payload...',payload)
           const newClass = yield call(Addclass,payload)
           console.log('newClass...',newClass)
           yield put({
@@ -70,8 +71,9 @@ export default {
       },
       //删除班级
       *Delclass({payload},{call,put}) {
+        console.log('payload...',payload)
           const delMsg = yield call(Delclass,payload)
-        //   console.log('delMsg...',delMsg)
+          console.log('delMsg...',delMsg)
           yield put({
               type: 'DEL',
               delMsg
@@ -133,8 +135,8 @@ export default {
             return {...state,getAddClass:newClass}
         },
         //删除班级
-        DEL(state,{delMsg}) {
-            return {...state,getDelClass:delMsg}
+        DEL(state,{payload}) {
+            return {...state,getDelClass:payload}
         },
         //获取学生信息
         GetInfo(state,{studentData}) {

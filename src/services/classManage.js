@@ -4,14 +4,13 @@ import request from '../utils/request';
 export function Allclass() {
     return request({
         url: '/manger/room',
-        type: 'GET'
+        method: 'GET'
     })
 }
 //删除教室接口
 export function Delclassroom(params) {
     return request({
         url: '/manger/room/delete',
-        type:'POST',
         method: 'DELETE',
         params
     })
@@ -20,7 +19,7 @@ export function Delclassroom(params) {
 export function Addclassroom(params) {
     return request({
         url:'/manger/room',
-        type: 'POST',
+        method: 'POST',
         params
     })
 }
@@ -28,7 +27,7 @@ export function Addclassroom(params) {
 export function Delclass(params) {
     return request({
         url: '/manger/grade/delete',
-        type: 'DELETE',
+        method: 'DELETE',
         params
     })
 }
@@ -36,7 +35,7 @@ export function Delclass(params) {
 export function Addclass(params) {
     return request({
         url: '/manger/grade',
-        type: 'POST',
+        method: 'POST',
         params
     })
 }
@@ -44,27 +43,27 @@ export function Addclass(params) {
 export function studentInfo() {
     return request({
         url: '/student/info',
-        type: 'GET'
+        method: 'GET'
     })
 }
 //获取已经分配教室的班级
 export function allocation() {
     return request({
         url: '/manger/grade',
-        type: 'GET'
+        method: 'GET'
     })
 }
 //学生管理
 export function studentMsg() {
     return request({
         url: '/manger/student',
-        type: 'GET'
+        method: 'GET'
     })
 }
 //获取所有的课程
 export function subjectMsg() {
     return request({
         url: '/exam/subject',
-        type: 'GET'
+        method: 'GET'
     })
 }

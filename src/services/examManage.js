@@ -6,7 +6,7 @@ import request from '../utils/request';
 export function examType() {
     return request({
         url: '/exam/examType',
-        type: 'GET'
+        method: 'GET'
     })
 }
 
@@ -14,7 +14,7 @@ export function examType() {
 export function getSubject() {
     return request({
         url: '/exam/subject',
-        type: 'GET'
+        method: 'GET'
     })
 }
 
@@ -22,7 +22,7 @@ export function getSubject() {
 export function getList() {
     return request({
         url: '/exam/exam',
-        type: 'GET'
+        method: 'GET'
     })
 }
 
@@ -30,7 +30,7 @@ export function getList() {
 export function createItem(params) {
     return request({
         url:'/exam/exam',
-        type:'POST',
+        method:'POST',
         data: params
     })
 }
@@ -39,7 +39,7 @@ export function createItem(params) {
 export function detailExam() {
     return request({
         url:'/exam/exam/w5tcy-g2dts',
-        type:'GET'
+        method:'GET'
     })
 }
 
@@ -47,6 +47,6 @@ export function detailExam() {
 export function studentPaper() {
     return request({
         url: '/exam/student',
-        type: 'GET'
+        method: 'GET'
     })
 }

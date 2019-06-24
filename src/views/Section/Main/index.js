@@ -16,7 +16,7 @@ class Main extends Component {
       collapsed: !this.state.collapsed,
     });
   };
- 
+    
   render() {
     if(!this.props.myView.length) {
         return null
@@ -39,13 +39,13 @@ class Main extends Component {
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.baidu.com/">
+          <a target="_blank" rel="noopener noreferrer" onClick={()=>this.handleBack}>
             退出登录
           </a>
         </Menu.Item>
       </Menu>
     );
-    // console.log(this.props.myView)
+    
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
@@ -84,26 +84,7 @@ class Main extends Component {
                     }
                   })
                 }
-                {/* <Route path='/main/question/add' component={Addquestion}/>
-                <Route path='/main/question/type' component={typeQuestion}/>
-                <Route path='/main/question/view' component={questionView}/>
-                <Route path='/main/question/viewEdit' component={EditQuestion}/>
-                <Route path='/main/question/viewDetail' component={DetailCont}/> */}
             </Switch>
-            {/* <div>
-              <Switch>
-                <Route path='/main/user/add' component={AddUser}/>
-                <Route path='/main/user/view' component={Viewuser}/>
-                <Route path='/main/exam/add' component={AddExam}/>
-                <Route path='/main/exam/manage' component={ManageExam}/>
-                <Route path='/main/exam/detail' component={ExamDetail}/>
-                <Route path='/main/exam/edit' component={createNew} />
-                <Route path='/main/class/manage' component={null}/>
-                <Route path='/main/class/classroomManage' component={Classroom}/>
-                <Route path='/main/class/studentManage' component={Student}/>
-                <Route path='/main/paper/approval' component={AwaitClass}/>
-              </Switch>
-            </div> */}
             {/* {this.props.loading?<div className={style.loading}>
               <Spin/>
             </div>:null} */}
@@ -111,6 +92,9 @@ class Main extends Component {
         </Layout>
       </Layout>
     )
+  }
+  handleBack = () => {
+    document.Cookies.remove('authorization')
   }
 }
 

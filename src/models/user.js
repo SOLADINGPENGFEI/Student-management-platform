@@ -45,7 +45,7 @@ export default {
                 dispatch(routerRedux.replace({
                   pathname: '/main'
                 }))
-            }
+            } 
           }
         })
       },
