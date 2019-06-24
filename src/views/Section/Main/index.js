@@ -45,7 +45,7 @@ class Main extends Component {
         </Menu.Item>
       </Menu>
     );
-    console.log(this.props.myView)
+    // console.log(this.props.myView)
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>

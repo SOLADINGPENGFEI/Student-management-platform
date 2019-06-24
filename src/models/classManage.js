@@ -42,11 +42,12 @@ export default {
       },
       //删除教室
       *Delclassroom({payload},{call,put}) {
-          const DelMsg = yield call(Delclassroom,payload)
-        //   console.log('DelMsg...',DelMsg)
+          console.log('payload...',payload)
+          const DelRoom = yield call(Delclassroom,payload)
+          console.log('DelRoom...',DelRoom)
           yield put({
               type:'deleteroom',
-              DelMsg
+              DelRoom
           })
       },
       //添加教室
@@ -120,8 +121,8 @@ export default {
             return {...state, getAllClass:getAllgrade.data}
         },
         //删除教室
-        deleteroom(state,{DelMsg}) {
-            return {...state,getDelroom:DelMsg}
+        deleteroom(state,{DelRoom}) {
+            return {...state,getDelroom:DelRoom}
         },
         //添加教室
         Addnewroom(state,{newroom}) {

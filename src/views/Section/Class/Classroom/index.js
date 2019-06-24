@@ -13,14 +13,27 @@ function Class(props) {
         },
         {
           title: '操作',
-          key: 'action',
-          render: (text, record) => (
+          key: 'room_id',
+          render: (text,record,ind) => (
             <span>
-              <a>删除</a>
+              <a onClick={()=>delGrage(ind)}>删除</a>
             </span>
           ),
         },
       ];
+      let deleteRoom
+     let delGrage = (ind) =>{
+         console.log(ind)
+          deleteRoom = getAllClass.filter((item,index)=>{
+             if(index===ind) {
+                 return item
+             }
+         })
+         console.log(deleteRoom)
+        props.DelClass({
+            room_id:deleteRoom[0].room_id
+        })
+     }
     //弹框
     const [visible,newvisible] = useState(false)
     const [confirmLoading,newconfirmLoading] = useState(false)
@@ -46,7 +59,7 @@ function Class(props) {
     useEffect(() => {
         props.getAllGrade()
         props.AddnewClass()
-        props.DelClass()
+        
     },[])
     //获取数据
     const {getAllClass} = props

@@ -4,7 +4,6 @@ import {routerRedux} from 'dva/router'
 
 //引入路由表
 import allView from '@/router/config.js'
-console.log(allView.routes)
 export default {
     // 命名空间
     namespace: 'user',
@@ -72,7 +71,7 @@ export default {
       *userMsg({payload},{call,put, select}) {
         // 1.判断是否有权限信息
         let myView = yield select(state=>state.user.myView)
-        console.log('myView...',myView)
+        // console.log('myView...',myView)
         if(myView.length) {
           return
         }

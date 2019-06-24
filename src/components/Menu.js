@@ -7,7 +7,7 @@ import {injectIntl} from 'react-intl'
 const {SubMenu} = Menu
 
 function MenuComp(props) {
-    console.log(props.myView)
+    // console.log(props.myView)
     return <Menu
     defaultSelectedKeys={['0']}
     defaultOpenKeys={['router.main.quesion']}

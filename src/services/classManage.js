@@ -11,7 +11,8 @@ export function Allclass() {
 export function Delclassroom(params) {
     return request({
         url: '/manger/room/delete',
-        type: 'DELETE',
+        type:'POST',
+        method: 'DELETE',
         params
     })
 }
@@ -28,7 +29,7 @@ export function Delclass(params) {
     return request({
         url: '/manger/grade/delete',
         type: 'DELETE',
-        data: params
+        params
     })
 }
 //添加班级接口
@@ -36,7 +37,7 @@ export function Addclass(params) {
     return request({
         url: '/manger/grade',
         type: 'POST',
-        data: params
+        params
     })
 }
 //获取学生信息

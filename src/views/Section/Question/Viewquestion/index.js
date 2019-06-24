@@ -23,7 +23,7 @@ class questionView extends Component {
     render() {
         const {subdata,data,questionData,allData,findquestion} = this.props
        
-        console.log(findquestion)
+        // console.log(findquestion)
         const {getFieldDecorator} = this.props.form
         return (
             <div>
@@ -118,12 +118,12 @@ class questionView extends Component {
     }
     
     editquestion = (item) => {
-      console.log(item)
+    //   console.log(item)
       // console.log(this.props.history)
       this.props.history.replace('/main/question/viewEdit?'+item.questions_id)
     }
     detailCont = (id) => {
-      console.log(id)
+    //   console.log(id)
       this.props.history.replace('/main/question/viewDetail?'+id)
     }
     componentDidMount() {

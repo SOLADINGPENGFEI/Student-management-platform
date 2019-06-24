@@ -173,7 +173,7 @@ function Grade(props) {
                     
                     </Form>
                     </Modal>
-                <Table columns={columns} dataSource={getMessage} />
+                <Table columns={columns} dataSource={getMessage} rowKey={item=>item.grade_id} />
             </div>
         </div>
     </div>
