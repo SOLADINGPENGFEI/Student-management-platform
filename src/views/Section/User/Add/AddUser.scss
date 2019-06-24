@@ -1,19 +1,13 @@
-:global {
-    .type{
-        width:400px;
-        height:300px;
-    
-    }
-    .wrap{
-        width:100%;
-        height:100%;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        
-        .section{
-            width:33%;
-       
-        }
-    }
+
+.addMain{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.addMain_sec{
+    width: 33.3%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-sizing: border-box;
 }

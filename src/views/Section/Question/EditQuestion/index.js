@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Editor from 'for-editor'
 import {connect} from 'dva'
-import {Button,Select, Input,Form,message} from 'antd'
+import {Button,Select, Input,Form,message,Breadcrumb} from 'antd'
 
 const { Option } = Select;
 class Addquestion extends Component {
@@ -77,6 +77,11 @@ class Addquestion extends Component {
             }
            
         return (
+          <div>
+            <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
+              <Breadcrumb.Item>编辑试题</Breadcrumb.Item>
+            </Breadcrumb> 
+            <div style={{ background: '#fff', padding: 25, minHeight: 225,borderRadius:'10px' }}>
           <Form onSubmit={this.handleSubmit} >
               <h3>题目信息</h3>
               <div>
@@ -180,7 +185,8 @@ class Addquestion extends Component {
               </div>
               <Button htmlType="submit" type="primary">提交</Button>
           </Form>
-
+          </div>
+          </div>
         )
       }
       

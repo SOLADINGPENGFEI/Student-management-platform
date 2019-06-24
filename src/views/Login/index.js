@@ -15,7 +15,8 @@ function LoginPage(props) {
           // console.log('props.history',props.history)
           props.history.replace("/main")
           // let pathName = decodeURIComponent(props.history.location.search.split('=')[1])
-          // props.history.replace(pathName)
+          // console.log(pathName)
+          // props.history.replace(pathName || '/main')
       } else if(props.isLogin === -1) {
         message.error('用户名或密码错误')
       }

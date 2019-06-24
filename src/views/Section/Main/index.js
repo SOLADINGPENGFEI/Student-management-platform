@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 import MainComp from '@/components/Menu'
-//试题管理
-import Addquestion from '../Question/Addquestion/index'
-import typeQuestion from '../Question/Typequestion/index'
-import questionView from '../Question/Viewquestion/index'
-import EditQuestion from '../Question/EditQuestion/index'
-import DetailCont from '../Question/Detail/index'
-//用户管理
-import AddUser from '../User/Add/index'
-import Viewuser from '../User/View/index'
-//考试管理
-import AddExam from '../Exam/Addexam/index'
-import ManageExam from '../Exam/ManageExam/index'
 
 import style from './Main.css';
-import { Menu, Dropdown, Icon, Layout } from 'antd';
-import { Route,Switch } from 'dva/router'
+import { Menu, Dropdown, Icon, Layout,Select } from 'antd';
+import { Route,Switch,Redirect } from 'dva/router'
+import {connect} from 'dva'
 const {Header, Content, Sider } = Layout
-
+const { Option } = Select;
 class Main extends Component {
    state = {
     collapsed: false,
@@ -27,7 +16,11 @@ class Main extends Component {
       collapsed: !this.state.collapsed,
     });
   };
+ 
   render() {
+    if(!this.props.myView.length) {
+        return null
+    }
     const menu = (
       <Menu style={{marginTop:"30px"}}>
         <Menu.Item>
@@ -46,16 +39,23 @@ class Main extends Component {
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+          <a target="_blank" rel="noopener noreferrer" href="http://www.baidu.com/">
             退出登录
           </a>
         </Menu.Item>
       </Menu>
     );
+    console.log(this.props.myView)
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
                <img src="/public/bwLOGO.png" alt=""/>
+               <Select defaultValue='EngLish'
+               style={{ width: 120 }}
+               onChange={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
+                 <Option value="EngLish">EngLish</Option>
+                 <Option value="中文">中文</Option>
+               </Select>
                <div className={style.person_data}>
                   <Dropdown overlay={menu}>
                       <a className="ant-dropdown-link" href="" style={{color:"#000"}}>
@@ -70,26 +70,43 @@ class Main extends Component {
             <Sider style={{ width: 200,height:"100%"}}>
                 <MainComp />
             </Sider>
-          <Content style={{ padding: '0 30px' }}>
+          <Content style={{ padding: '0 25px' }}>
             <Switch>
-                <Route path='/main/question/add' component={Addquestion}/>
+                <Redirect exact from="/main" to="/main/question/add" />
+                {/* 渲染该用户拥有的路由 */}
+                
+                {
+                  this.props.myView.map((item)=>{
+                    if(item.children) {
+                      return item.children.map((value)=>{
+                          return <Route key={value.id} path={value.path} component={value.component} />
+                      })
+                    }
+                  })
+                }
+                {/* <Route path='/main/question/add' component={Addquestion}/>
                 <Route path='/main/question/type' component={typeQuestion}/>
                 <Route path='/main/question/view' component={questionView}/>
                 <Route path='/main/question/viewEdit' component={EditQuestion}/>
-                <Route path='/main/question/viewDetail' component={DetailCont}/>
+                <Route path='/main/question/viewDetail' component={DetailCont}/> */}
             </Switch>
-            <div>
+            {/* <div>
               <Switch>
                 <Route path='/main/user/add' component={AddUser}/>
                 <Route path='/main/user/view' component={Viewuser}/>
                 <Route path='/main/exam/add' component={AddExam}/>
                 <Route path='/main/exam/manage' component={ManageExam}/>
+                <Route path='/main/exam/detail' component={ExamDetail}/>
+                <Route path='/main/exam/edit' component={createNew} />
                 <Route path='/main/class/manage' component={null}/>
-                <Route path='/main/class/classroomManage' component={null}/>
-                <Route path='/main/class/studentManage' component={null}/>
-                <Route path='/main/paper/approval' component={null}/>
+                <Route path='/main/class/classroomManage' component={Classroom}/>
+                <Route path='/main/class/studentManage' component={Student}/>
+                <Route path='/main/paper/approval' component={AwaitClass}/>
               </Switch>
-            </div>
+            </div> */}
+            {/* {this.props.loading?<div className={style.loading}>
+              <Spin/>
+            </div>:null} */}
           </Content>
         </Layout>
       </Layout>
@@ -98,9 +115,25 @@ class Main extends Component {
 }
 
 
-
 Main.propTypes = {
 
 };
-
-export default Main;
+const mapStateToProps = state => {
+    return {
+      // loading: state.loading.global,
+      locale: state.global.locale,
+      myView: state.user.myView,
+      forbiddenView: state.user.forbiddenView
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+      changeLocal: payload => {
+        dispatch({
+          type: 'global/changeLocale',
+          payload
+        })
+      }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Main);
