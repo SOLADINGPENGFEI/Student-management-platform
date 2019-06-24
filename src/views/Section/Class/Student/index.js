@@ -9,12 +9,22 @@ function Student(props) {
     //Form表单
     let handleSubmit = e => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        props.form.validateFields((err, values) => {
         if (!err) {
             console.log('Received values of form: ', values);
+            props.getStudent(values)
         }
         });
+        
     };
+    function redirect(e){
+        console.log(e)
+        props.form.validateFields((err, values) => {
+            console.log(values)
+            props.getStudent()
+            // }
+        })
+    }
     //table表格
     const columns = [
         {
@@ -105,7 +115,7 @@ function Student(props) {
                     <Button style={{width:120}} type="primary" htmlType='submit'>搜索</Button>
                 </Form.Item>
                 <Form.Item>
-                    <Button style={{width:120}} type="primary">重置</Button>
+                    <Button style={{width:120}} type="primary" onClick={redirect}>重置</Button>
                 </Form.Item>
             </Form>
             </div>
@@ -123,9 +133,10 @@ const mapDispatch = dispatch => {
                 type:'class/allocation'
             })
         },
-        getStudent() {
+        getStudent(payload) {
             dispatch({
-                type:'class/studentMsg'
+                type:'class/studentMsg',
+                payload
             })
         },
         getClass() {
