@@ -35,15 +35,14 @@ function Grade(props) {
           if (!err) {
             console.log('Received values of form: ', values);
             props.addClass({
-                "grade_name":values.grade,
-                "room_id":values.class,
-                "subject_id":values.course
+                grade_name: values.grade,
+                room_id: values.class,
+                subject_id: values.course
             })
           }
         });
       };
       const { getFieldDecorator }  = props.form
-   
       //table
       const columns = [
         {
@@ -127,7 +126,6 @@ function Grade(props) {
                     return item
                 }
             })
-            console.log(gradeID)
             props.delClass({
                 grade_id: gradeID[0].grade_id
             })
@@ -216,7 +214,6 @@ const mapDispatch = dispatch => {
         },
         //添加班级
         addClass(payload) {
-            console.log(payload)
             dispatch({
                 type:'class/Addclass',
                 payload

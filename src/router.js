@@ -19,7 +19,7 @@ const localMap = {
 addLocaleData([...en,...zh])
 
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
   return {
     locale: state.global.locale
   }

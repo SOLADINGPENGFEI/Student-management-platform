@@ -53,7 +53,7 @@ export default {
       //添加教室
       *Addclassroom({payload},{call,put}) {
           const newroom = yield call(Addclassroom,payload)
-        //   console.log('newroom...',newroom)
+          console.log('newroom...',newroom)
           yield put({
               type: 'Addnewroom',
               newroom

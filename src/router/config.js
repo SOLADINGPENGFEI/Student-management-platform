@@ -30,6 +30,7 @@ const ManageExam = dynamic({
 const ExamDetail = dynamic({
     component: () => import('@/views/Section/Exam/ExamDetail/index.js')
 })
+
 const EditExam = dynamic({
     component: () => import('@/views/Section/Exam/createNew/index.js')
 })
@@ -67,12 +68,12 @@ export default {
             path: '/main/question/view',
             component: ViewQuestions
         },{
-            // name: 'router.main.question.viewEdit',
+            name: '',
             id: 'main-editQuestions',
             path: '/main/question/viewEdit',
             component: EditQuestions
         },{
-            // name: 'router.main.question.viewDetail',
+            name: '',
             id: 'main-questionsDetail',
             path: '/main/question/viewDetail',
             component: DetailQuestions
@@ -103,12 +104,12 @@ export default {
             path: '/main/exam/manage',
             component: ManageExam
         },{
-            // name: 'router.main.exam.detail',
+            name: '',
             id: 'main-examDetail',
             path: '/main/exam/detail',
             component: ExamDetail
         },{
-            // name: 'router.main.exam.edit',
+            name: '',
             id: 'main-editQuestions',
             path: '/main/exam/edit',
             component: EditExam

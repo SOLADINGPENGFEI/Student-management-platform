@@ -27,7 +27,7 @@ function MenuComp(props) {
               <Link to={value.path}>
                 {props.intl.formatMessage({id: value.name})}
               </Link>
-            </Menu.Item>:<Link to={value.path}/>
+            </Menu.Item>:null
           })
         }
         </SubMenu>

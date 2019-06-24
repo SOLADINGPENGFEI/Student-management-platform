@@ -12,7 +12,7 @@ export function Delclassroom(params) {
     return request({
         url: '/manger/room/delete',
         method: 'DELETE',
-        params
+        data: params
     })
 }
 //添加教室接口
@@ -20,7 +20,7 @@ export function Addclassroom(params) {
     return request({
         url:'/manger/room',
         method: 'POST',
-        params
+        data: params
     })
 }
 //删除班级接口
@@ -28,7 +28,7 @@ export function Delclass(params) {
     return request({
         url: '/manger/grade/delete',
         method: 'DELETE',
-        params
+        data: params
     })
 }
 //添加班级接口
@@ -36,7 +36,7 @@ export function Addclass(params) {
     return request({
         url: '/manger/grade',
         method: 'POST',
-        params
+        data: params
     })
 }
 //获取学生信息
@@ -65,5 +65,13 @@ export function subjectMsg() {
     return request({
         url: '/exam/subject',
         method: 'GET'
+    })
+}
+//删除学生
+export function delStudentInfo(params) {
+    return request({
+        url:'/manger/student/:id=>student_id',
+        method: 'DELETE',
+        data: params
     })
 }

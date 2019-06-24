@@ -7,14 +7,24 @@ function Student(props) {
 
     const { getFieldDecorator } = props.form
     //Form表单
+    let studentList = []
+    let filterList
     let handleSubmit = e => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        props.form.validateFields((err, values) => {
         if (!err) {
             console.log('Received values of form: ', values);
+            filterList = getAllStudent.filter(item=>{
+                if(item.student_name===values.name||item.room_text===values.classroom||item.grade_name===values.grade) {
+                    return  studentList.push(item)
+                }
+            })
+            console.log(filterList)
+            return studentList
         }
         });
     };
+   
     //table表格
     const columns = [
         {
@@ -60,7 +70,7 @@ function Student(props) {
       },[])
       //获取数据
       const { getMessage,getAllStudent,getAllClass } = props
-      console.log(getMessage)
+      studentList = getAllStudent
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
             <Breadcrumb.Item>学生管理</Breadcrumb.Item>
@@ -105,11 +115,11 @@ function Student(props) {
                     <Button style={{width:120}} type="primary" htmlType='submit'>搜索</Button>
                 </Form.Item>
                 <Form.Item>
-                    <Button style={{width:120}} type="primary">重置</Button>
+                    <Button style={{width:120}} type="primary" onClick={()=> props.form.resetFields()}>重置</Button>
                 </Form.Item>
             </Form>
             </div>
-            <Table columns={columns} dataSource={getAllStudent} rowKey={item=>item.student_id}/>
+            <Table columns={columns} dataSource={studentList} rowKey={item=>item.student_id}/>
         </div>
     </div>
 }

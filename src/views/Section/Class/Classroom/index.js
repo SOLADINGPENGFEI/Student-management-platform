@@ -36,7 +36,7 @@ function Class(props) {
      }
     //弹框
     const [visible,newvisible] = useState(false)
-    const [confirmLoading,newconfirmLoading] = useState(false)
+    const [confirmLoading] = useState(false)
     let showModal = () => {
         newvisible(true)
       };
@@ -46,9 +46,13 @@ function Class(props) {
    //Form表单
     let handleSubmit = e => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        props.form.validateFields((err, values) => {
         if (!err) {
-            console.log('Received values of form: ', values);
+            console.log(values);
+            props.AddnewClass({
+                room_text: values.grade
+            })
+            newvisible(false)
         }
         });
     };
@@ -58,18 +62,15 @@ function Class(props) {
     //请求数据
     useEffect(() => {
         props.getAllGrade()
-        props.AddnewClass()
-        
     },[])
     //获取数据
     const {getAllClass} = props
-    console.log(getAllClass)
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
             <Breadcrumb.Item>教室管理</Breadcrumb.Item>
         </Breadcrumb>
         <div className='class-wrap'>
-            <Form onSubmit={handleSubmit}>
+            
                 <div>
                     <Button type="primary" onClick={showModal}>
                     添加教室
@@ -82,6 +83,7 @@ function Class(props) {
                     onCancel={handleCancel}
                     confirmLoading={confirmLoading}
                     >
+                <Form onSubmit={handleSubmit}>
                     <Form.Item label="教室号">
                     {getFieldDecorator('grade', {
                             rules: [{ required: true, message: '请输入教室号' }],
@@ -92,11 +94,9 @@ function Class(props) {
                     </Form.Item>
                         <Button onClick={handleCancel}>取消</Button>
                         <Button type="primary" htmlType='submit'>提交</Button>
+                    </Form>
                     </Modal>
-                    
                 </div>
-                
-            </Form>
             <Table columns={columns} dataSource={getAllClass} rowKey={item=>item.room_id} />
         </div>
     </div>
@@ -115,7 +115,7 @@ const mapDispatch = dispatch => {
         //添加教室
         AddnewClass(payload) {
             dispatch({
-                type: 'class/Addnewroom',
+                type: 'class/Addclassroom',
                 payload
             })
         },
