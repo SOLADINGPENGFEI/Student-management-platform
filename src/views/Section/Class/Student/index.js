@@ -17,6 +17,9 @@ function Student(props) {
         });
         
     };
+ 
+
+
     function redirect(e){
         console.log(e)
         props.form.validateFields((err, values) => {
@@ -71,6 +74,18 @@ function Student(props) {
       //获取数据
       const { getMessage,getAllStudent,getAllClass } = props
       console.log(getMessage)
+
+         //点击搜索
+    function search(e){
+        props.form.validateFields((err, values) => {
+            if (!err) {
+               // console.log('values', values);
+                getAllStudent.filter((item)=>{
+                    console.log('item',item)
+                })
+            }
+            });
+    }
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
             <Breadcrumb.Item>学生管理</Breadcrumb.Item>
@@ -112,7 +127,7 @@ function Student(props) {
                     )}
                 </Form.Item>
                 <Form.Item>
-                    <Button style={{width:120}} type="primary" htmlType='submit'>搜索</Button>
+                    <Button style={{width:120}} type="primary" onClick={search}>搜索</Button>
                 </Form.Item>
                 <Form.Item>
                     <Button style={{width:120}} type="primary" onClick={redirect}>重置</Button>
