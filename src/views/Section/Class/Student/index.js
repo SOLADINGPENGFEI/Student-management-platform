@@ -82,9 +82,11 @@ function Student(props) {
                // console.log('values', values);
                 getAllStudent.filter((item)=>{
                     console.log('item',item)
+                    return item.student_name===values.name
                 })
             }
             });
+            
     }
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
