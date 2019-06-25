@@ -64,6 +64,7 @@ function Class(props) {
         props.getAllGrade()
     },[])
     //获取数据
+    
     const {getAllClass} = props
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
