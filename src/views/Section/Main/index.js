@@ -24,7 +24,7 @@ class Main extends Component {
     const menu = (
       <Menu style={{marginTop:"30px"}}>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+          <a onClick={()=>this.handleDraw()}>
             个人中心
           </a>
         </Menu.Item>
@@ -39,7 +39,7 @@ class Main extends Component {
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" onClick={()=>this.handleBack}>
+          <a target="_blank" rel="noopener noreferrer" onClick={()=>this.handleBack()}>
             退出登录
           </a>
         </Menu.Item>
@@ -77,6 +77,7 @@ class Main extends Component {
                 
                 {
                   this.props.myView.map((item)=>{
+                  
                     if(item.children) {
                       return item.children.map((value)=>{
                           return <Route key={value.id} path={value.path} component={value.component} />
@@ -94,7 +95,10 @@ class Main extends Component {
     )
   }
   handleBack = () => {
-    document.Cookies.remove('authorization')
+    // document.Cookies.remove('authorization')
+  }
+  handleDraw = () => {
+    this.props.history.replace('/main/draw')
   }
 }
 

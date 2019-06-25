@@ -68,7 +68,7 @@ export default {
       },
       *allQuestion({payload},{call,put}) {
         let AllData = yield call(allQuestion)
-          // console.log('AllData...',AllData)
+          // console.log('AllData...111',AllData)
           yield put({
             type: 'getAllData',
             AllData

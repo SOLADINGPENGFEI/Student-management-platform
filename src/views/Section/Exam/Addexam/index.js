@@ -84,8 +84,8 @@ function AddExam(props) {
                 exam_id:values.examType,
                 title:values.text,
                 number:values.count,
-                start_time:values.startTime._d.toLocaleString(),
-                end_time: values.endTime._d.toLocaleString()
+                start_time:new Date(values.startTime._d.toLocaleString()).getTime(),
+                end_time: new Date(values.endTime._d.toLocaleString()).getTime()
             })
              localStorage.setItem('exam',JSON.stringify({
                 subject_id:values.examTest,

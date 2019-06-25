@@ -110,7 +110,7 @@ export default {
             component: ExamDetail
         },{
             name: '',
-            id: 'main-editQuestions',
+            id: 'main-examEdit',
             path: '/main/exam/edit',
             component: EditExam
         }]

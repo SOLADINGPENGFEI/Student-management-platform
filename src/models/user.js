@@ -105,6 +105,7 @@ export default {
         return {...state, userInfo: payload}
       },
       updateViewAuthority(state,{payload}) {
+        // console.log(payload)
         // 筛选出我所有的前端路由权限
         let myView = allView.routes,
             forbiddenView = []

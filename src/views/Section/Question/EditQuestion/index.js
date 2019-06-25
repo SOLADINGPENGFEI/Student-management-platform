@@ -16,7 +16,7 @@ class Addquestion extends Component {
         this.setState({
           value
         })
-        console.log(value)
+        // console.log(value)
       }
       handleSubmit = e => {
         e.preventDefault()
@@ -51,17 +51,18 @@ class Addquestion extends Component {
       
       render() {
         // const { value } = this.state
-        const {data,subdata,questionData,AllData} = this.props
+        const {data,subdata,questionData,allData} = this.props
+        console.log(allData)
         const { getFieldDecorator } = this.props.form;
         const questionID = this.props.history.location.search.slice(1)
-        const detail = AllData?AllData.data.filter(item=>{
+        const detail = allData?allData.filter(item=>{
             if(item.questions_id===questionID){
                 return item
             } else {
                 return null
             }
         }):null
-            
+            // console.log(detail)
             let detailquestion 
             if(detail) {
                 detailquestion = {

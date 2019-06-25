@@ -20,8 +20,8 @@ function createNew(props) {
     let data = JSON.parse(localStorage.getItem('exam'))
     console.log(data)
     //获取所有试题的数据
-    const {AllData} = props
-    console.log(AllData)
+    const {allData} = props
+    console.log(allData)
     //table表格数据
     const columns = [
         {
@@ -92,7 +92,7 @@ function createNew(props) {
           onClose={onClose}
           visible={visible}
         >
-          <Table columns={columns} dataSource={AllData?AllData.data:null} 
+          <Table columns={columns} dataSource={allData} 
           rowKey={item=>item.questions_id} showHeader={false} />
           <div
             style={{

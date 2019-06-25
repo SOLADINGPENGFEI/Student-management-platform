@@ -4,13 +4,14 @@ import { Tag,Breadcrumb } from 'antd';
 
 import './detail.scss'
 function Detail(props) {
+    console.log(props)
     useEffect(()=>{
         props.getAllData()
     },[])
-    const {AllData} = props
-    console.log(AllData)
+    const {allData} = props
+    // console.log(allData)
     const detailID = props.history.location.search.slice(1)
-    const detail = AllData?AllData.data.filter(item=>{
+    const detail = allData?allData.filter(item=>{
         if(item.questions_id===detailID){
             return item
         } else {
@@ -29,7 +30,6 @@ function Detail(props) {
         } else {
             return null
         }
-    console.log(AllData)
 
     return <div>
                 <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>

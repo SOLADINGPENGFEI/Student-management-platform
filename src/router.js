@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
 import LoginPage from './views/Login/index';
 import Main from './views/Section/Main/index';
+import picture from './views/Draw'
 
 import {connect} from 'dva'
 
@@ -30,8 +31,9 @@ const RouterView = connect(mapStateToProps)(({locale,history})=>{
     <Router history={history}>
         <Switch>
           <Route path="/login"  component={LoginPage} />
+          <Route path="/main/draw" component={picture} />
           <Route path="/main"  component={Main} />
-          {/* <Redirect from='/' to='/login'/> */}
+          {/* <Redirect from='/' to='/main'/> */}
         </Switch>
     </Router>
   </IntlProvider>

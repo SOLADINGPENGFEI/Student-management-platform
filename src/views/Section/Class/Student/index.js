@@ -55,13 +55,16 @@ function Student(props) {
         {
           title: '操作',
           key: 'action',
-          render: (text, record) => (
+          render: (text, record,index) => (
             <span>
-              <a>删除</a>
+              <a onClick={()=>delStudent(index)}>删除</a>
             </span>
           ),
         },
       ];
+      let delStudent = ind => {
+          
+      }
       //请求数据
       useEffect(()=>{
           props.getgrade()
