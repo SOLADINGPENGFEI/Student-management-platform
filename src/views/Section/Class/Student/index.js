@@ -9,25 +9,12 @@ function Student(props) {
     //Form表单
     let handleSubmit = e => {
         e.preventDefault();
-        props.form.validateFields((err, values) => {
+        this.props.form.validateFields((err, values) => {
         if (!err) {
             console.log('Received values of form: ', values);
-            props.getStudent(values)
         }
         });
-        
     };
- 
-
-
-    function redirect(e){
-        console.log(e)
-        props.form.validateFields((err, values) => {
-            console.log(values)
-            props.getStudent()
-            // }
-        })
-    }
     //table表格
     const columns = [
         {
@@ -74,20 +61,6 @@ function Student(props) {
       //获取数据
       const { getMessage,getAllStudent,getAllClass } = props
       console.log(getMessage)
-
-         //点击搜索
-    function search(e){
-        props.form.validateFields((err, values) => {
-            if (!err) {
-               // console.log('values', values);
-                getAllStudent.filter((item)=>{
-                    console.log('item',item)
-                    return item.student_name===values.name
-                })
-            }
-            });
-            
-    }
     return <div>
         <Breadcrumb style={{ margin: '16px 0',fontSize: 22 }}>
             <Breadcrumb.Item>学生管理</Breadcrumb.Item>
@@ -129,10 +102,10 @@ function Student(props) {
                     )}
                 </Form.Item>
                 <Form.Item>
-                    <Button style={{width:120}} type="primary" onClick={search}>搜索</Button>
+                    <Button style={{width:120}} type="primary" htmlType='submit'>搜索</Button>
                 </Form.Item>
                 <Form.Item>
-                    <Button style={{width:120}} type="primary" onClick={redirect}>重置</Button>
+                    <Button style={{width:120}} type="primary">重置</Button>
                 </Form.Item>
             </Form>
             </div>
@@ -150,10 +123,9 @@ const mapDispatch = dispatch => {
                 type:'class/allocation'
             })
         },
-        getStudent(payload) {
+        getStudent() {
             dispatch({
-                type:'class/studentMsg',
-                payload
+                type:'class/studentMsg'
             })
         },
         getClass() {

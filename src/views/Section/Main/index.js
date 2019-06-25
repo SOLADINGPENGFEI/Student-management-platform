@@ -8,6 +8,7 @@ import {connect} from 'dva'
 const {Header, Content, Sider } = Layout
 const { Option } = Select;
 class Main extends Component {
+  
    state = {
     collapsed: false,
    }
@@ -16,6 +17,7 @@ class Main extends Component {
       collapsed: !this.state.collapsed,
     });
   };
+
  
   render() {
     if(!this.props.myView.length) {
@@ -24,9 +26,10 @@ class Main extends Component {
     const menu = (
       <Menu style={{marginTop:"30px"}}>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+          <a target="_blank" rel="noopener noreferrer" href="@/views/my.js">
             个人中心
           </a>
+          {/* <span onClick={this.mine}>个人中心</span> */}
         </Menu.Item>
         <Menu.Item>
           <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">

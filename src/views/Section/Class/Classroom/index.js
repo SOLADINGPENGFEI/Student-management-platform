@@ -16,18 +16,11 @@ function Class(props) {
           key: 'action',
           render: (text, record) => (
             <span>
-              <a onClick={del}>删除</a>
+              <a>删除</a>
             </span>
           ),
         },
       ];
-      //删除
-      function del(){
-          console.log(11)
-        props.DelClass()
-
-      }
-
     //弹框
     const [visible,newvisible] = useState(false)
     const [confirmLoading,newconfirmLoading] = useState(false)
@@ -53,6 +46,7 @@ function Class(props) {
     useEffect(() => {
         props.getAllGrade()
         props.AddnewClass()
+        props.DelClass()
     },[])
     //获取数据
     const {getAllClass} = props

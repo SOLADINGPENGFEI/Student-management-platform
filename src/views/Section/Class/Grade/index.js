@@ -29,6 +29,9 @@ function Grade(props) {
         newVisible(false)
       };
 
+      let delItem=(e)=>{
+          console.log('删除',e)
+      }
       //Form
       let handleSubmit = e => {
         e.preventDefault();
@@ -44,7 +47,10 @@ function Grade(props) {
         });
       };
       const { getFieldDecorator }  = props.form
-   
+      //添加班级
+      function addGade(){
+          console.log(1)
+      }
       //table
       const columns = [
         {
@@ -73,6 +79,7 @@ function Grade(props) {
                     visible={visible}
                     onCancel={handleCancel}
                     footer={false}
+                    onClick={addGade}
                     >
                     <Form onSubmit={handleSubmit}>
                     <Form.Item label="班级名">
@@ -116,7 +123,7 @@ function Grade(props) {
                     </Form>
                     </Modal>
                 <Divider type="vertical" />
-                <a>删除</a>
+                <a onClick={delItem}>删除</a>
               </span>
             ),
           }]
