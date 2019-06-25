@@ -14,7 +14,8 @@ export default {
         userInfo: {},
         viewAuthority: [], //用户所拥有的视图权限
         myView: [], //拥有权限的前端路由
-        forbiddenView: [] //没有权限访问的路由
+        forbiddenView: [], //没有权限访问的路由
+        userImg: null //用户头像
     },
     
     // 订阅路由跳转

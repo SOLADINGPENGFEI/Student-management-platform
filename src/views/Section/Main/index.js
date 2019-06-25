@@ -45,11 +45,11 @@ class Main extends Component {
         </Menu.Item>
       </Menu>
     );
-    
+    console.log(this.props.userImg)
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
-               <img src="/public/bwLOGO.png" alt=""/>
+               <img src={this.props.userImg} alt=""/>
                <Select defaultValue='EngLish'
                style={{ width: 120 }}
                onChange={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
@@ -111,7 +111,8 @@ const mapStateToProps = state => {
       // loading: state.loading.global,
       locale: state.global.locale,
       myView: state.user.myView,
-      forbiddenView: state.user.forbiddenView
+      forbiddenView: state.user.forbiddenView,
+      userImg: state.user.userImg
     }
 }
 const mapDispatchToProps = dispatch => {
