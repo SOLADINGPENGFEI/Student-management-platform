@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MainComp from '@/components/Menu'
 
 import style from './Main.css';
-import { Menu, Dropdown, Icon, Layout,Select } from 'antd';
+import { Menu, Dropdown, Icon, Layout,Select,Spin } from 'antd';
 import { Route,Switch,Redirect } from 'dva/router'
 import {connect} from 'dva'
 const {Header, Content, Sider } = Layout
@@ -39,7 +39,7 @@ class Main extends Component {
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a target="_blank" rel="noopener noreferrer" onClick={()=>this.handleBack()}>
+          <a onClick={()=>this.handleBack()}>
             退出登录
           </a>
         </Menu.Item>
@@ -49,7 +49,7 @@ class Main extends Component {
     return (
       <Layout className={style.main} style={{width:"100%",height:"100%"}}>
           <Header className={style.header}>
-               <img src={this.props.userImg} alt=""/>
+               <img src='/pulic/head.jpg' alt=""/>
                <Select defaultValue='EngLish'
                style={{ width: 120 }}
                onChange={()=>this.props.changeLocal(this.props.locale==='zh'?'en':'zh')}>
@@ -85,17 +85,24 @@ class Main extends Component {
                     }
                   })
                 }
+                 {/* 403路由 */}
+                 {this.props.forbiddenView.map((item)=>{
+                      return <Redirect key={item} from={item} to="/403"/>
+                  })}
+                  {/* 剩余路由去404 */}
+                  <Redirect to="/404"/>
             </Switch>
-            {/* {this.props.loading?<div className={style.loading}>
+            {this.props.loading?<div className={style.loading}>
               <Spin/>
-            </div>:null} */}
+            </div>:null}
           </Content>
         </Layout>
       </Layout>
     )
   }
   handleBack = () => {
-    // document.Cookies.remove('authorization')
+    this.props.LogOut()
+    this.props.history.push("/login")
   }
   handleDraw = () => {
     this.props.history.replace('/main/draw')
@@ -108,7 +115,7 @@ Main.propTypes = {
 };
 const mapStateToProps = state => {
     return {
-      // loading: state.loading.global,
+      loading: state.loading.global,
       locale: state.global.locale,
       myView: state.user.myView,
       forbiddenView: state.user.forbiddenView,

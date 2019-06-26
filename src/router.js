@@ -3,6 +3,8 @@ import { Router, Route, Switch } from 'dva/router';
 import LoginPage from './views/Login/index';
 import Main from './views/Section/Main/index';
 import picture from './views/Draw'
+import AccessForbiddenPage from './views/Other/403.js'
+import NotFoundPage from './views/Other/404.js'
 
 import {connect} from 'dva'
 
@@ -32,6 +34,8 @@ const RouterView = connect(mapStateToProps)(({locale,history})=>{
         <Switch>
           <Route path="/login"  component={LoginPage} />
           <Route path="/main/draw" component={picture} />
+          <Route path="/403" component={AccessForbiddenPage} />
+          <Route path="/404" component={NotFoundPage} />
           <Route path="/main"  component={Main} />
           {/* <Redirect from='/' to='/main'/> */}
         </Switch>

@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import {connect} from 'dva'
-import {Table,Breadcrumb,Divider} from 'antd'
+import {Table,Breadcrumb} from 'antd'
 
 import './class.scss'
 function AwaitGrade(props) {

@@ -2,11 +2,11 @@ import dva from 'dva';
 import './index.css';
 
 import 'antd/dist/antd.css'
-// import createLoading from 'dva-loading' 
+import createLoading from 'dva-loading' 
 // import {createLogger} from 'redux-logger'
 import {message} from 'antd'
 // 1. Initialize
-const app = dva();
+const app = dva(createLoading());
 
 // 2. Plugins
 app.use({
