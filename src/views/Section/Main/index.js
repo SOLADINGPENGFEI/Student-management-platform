@@ -101,6 +101,7 @@ class Main extends Component {
     )
   }
   handleBack = () => {
+    console.log(this.props)
     this.props.LogOut()
     this.props.history.push("/login")
   }
@@ -128,6 +129,11 @@ const mapDispatchToProps = dispatch => {
         dispatch({
           type: 'global/changeLocale',
           payload
+        })
+      },
+      LogOut(){
+        dispatch({
+            type:"user/logoutFn",
         })
       }
     }
