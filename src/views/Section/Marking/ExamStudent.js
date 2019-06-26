@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import {connect} from 'dva'
-import {Table,Breadcrumb,Divider,Form,Select,Button} from 'antd'
+import {Table,Form,Select,Button} from 'antd'
 
 
 import './Awaiting/class.scss'
@@ -38,9 +38,7 @@ function ExamStudent(props) {
             }
         });
     };
-    const correctPaper=(text)=>{
-  
-    }
+   
     //table表格数据
     const columns = [
         {
@@ -135,4 +133,4 @@ const mapDispatch = dispatch => {
    
     }
 }
-export default connect(mapState,null)(Form.create()(ExamStudent))
+export default connect(mapState,mapDispatch)(Form.create()(ExamStudent))
