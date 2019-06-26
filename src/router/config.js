@@ -46,7 +46,9 @@ const Student = dynamic({
 const AwaitClass = dynamic({
     component: () => import('@/views/Section/Marking/Awaiting/index.js')
 })
-
+const classmate = dynamic({
+    component: () => import('@/views/Section/Marking/ExamStudent.js')
+})
 
 
 export default {
@@ -139,6 +141,11 @@ export default {
             id: 'main-examPaperClassList',
             path: '/main/paper/approval',
             component: AwaitClass
+        },{
+            name: '',
+            id:'main-examPaperClassmate',
+            path:'/main/papers/ClassList',
+            component: classmate
         }]
     }]
 }

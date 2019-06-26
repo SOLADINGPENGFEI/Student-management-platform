@@ -1,4 +1,4 @@
-import { examType,getSubject,getList,createItem,detailExam,studentPaper } from '../services/examManage'
+import { examType,getSubject,getList,createItem,detailExam,studentPaper,studentDateil } from '../services/examManage'
 export default {
     // 命名空间
     namespace: 'exammanage',
@@ -10,7 +10,8 @@ export default {
        ListPaper: null,
        CreateItem: null,
        getDetaildata: null,
-       ClassData: null
+       ClassData: null,
+       GradeList: null
     },
   
     subscriptions: {
@@ -70,7 +71,17 @@ export default {
           type:'getStudents',
           getStudent
         })
-      }
+      },
+      //获取学生试卷列表接口
+      *paperClassMate({payload},{call,put}) {
+     
+        const data = yield call(studentDateil,payload)
+        console.log('data...',data)
+        yield put({
+          type:'ClassMate',
+          data
+        })
+      },
     },
   
     // 同步操作
@@ -97,8 +108,12 @@ export default {
       },
        //获取学生试卷列表
        getStudents(state,{getStudent}) {
-         return {...state,ClassData:getStudent.exam}
-       }
+         return {...state,ClassData:getStudent.data}
+       },
+        //获取学生试卷列表接口
+        ClassMate(state,{data}) {
+          return {...state,GradeList:data.exam}
+        },
     },
   
   };

@@ -138,23 +138,19 @@ console.log()
       
     }
     return (
-      
         <Layout>
-        
           <Layout>
             <Layout style={{ padding: "0 24px 24px" }}>
               <Breadcrumb style={{ margin: "16px 0" }}>
                   <Breadcrumb.Item>
-                
                     <h2>添加用户</h2>
                     <Form onSubmit={handleSubmit}>
                       <div className={styles.addMain}>
                         {/* 添加用户 */}
                         <div className={styles.addMain_sec}>
-                          
                               <Radio.Group
                                 defaultValue="a"
-                                style={{ marginBottom: 25, marginTop: 25 }}
+                                style={{ marginBottom: 10, marginTop: 5 }}
                               >
                                 <Radio.Button
                                   value="a"
@@ -178,7 +174,7 @@ console.log()
                                 {getFieldDecorator("user_id", {})(
                                   <Select
                                     showSearch
-                                    style={{ width: 150, marginBottom: 25 }}
+                                    style={{ width: 150, marginBottom: 10 }}
                                     placeholder="请选择身份id"
                                     optionFilterProp="children"
                                     onChange={onChange}
@@ -199,23 +195,18 @@ console.log()
                                       >
                                         {item.user_name}
                                       </Option>
-                                      
                                     )):null
-                                    
                                   }
-                                  
                                   </Select>
                                 )}
                               </Form.Item>:null
                               }
-                              
                               <Form.Item>
                                 {getFieldDecorator("user_name", {
-                                  
                                 })(
                                   <Input
                                     placeholder="请输入用户名"
-                                    style={{ marginBottom: 25 }}
+                                    style={{ marginBottom: 10 }}
                                   />
                                 )}
                               </Form.Item>
@@ -226,7 +217,7 @@ console.log()
                                 })(
                                   <Input
                                     placeholder="请输入密码"
-                                    style={{ marginBottom: 25 }}
+                                    style={{ marginBottom: 10 }}
                                   />
                                 )}
                               </Form.Item>
@@ -235,7 +226,7 @@ console.log()
                                 {getFieldDecorator("identity_id")(
                                   <Select
                                     showSearch
-                                    style={{ width: 150, marginBottom: 25 }}
+                                    style={{ width: 150, marginBottom: 10 }}
                                     placeholder="请选择身份id"
                                     optionFilterProp="children"
                                     onChange={onChange}
@@ -263,7 +254,7 @@ console.log()
                                 <Button
                                   type="primary"
                                   htmlType="submit"
-                                  style={{ width: 120, marginRight: 25, height: 40 }}
+                                  style={{ width: 120, marginRight: 10, height: 40 }}
                                 >
                                   确定
                                 </Button>
@@ -284,7 +275,7 @@ console.log()
                         <div className={styles.addMain_sec}>
                           <Radio.Group
                             defaultValue="a"
-                            style={{ marginBottom: 25, marginTop: 25 }}
+                            style={{ marginBottom: 10, marginTop: 10 }}
                           >
                             <Radio.Button value="a">添加身份</Radio.Button>
                           </Radio.Group>
@@ -295,7 +286,7 @@ console.log()
                             })(
                               <Input
                                 placeholder="请输入身份名称"
-                                style={{ marginBottom: 25 }}
+                                style={{ marginBottom: 10 }}
                               />
                             )}
                           </Form.Item>
@@ -304,7 +295,7 @@ console.log()
                             <Button
                               type="primary"
                               htmlType="submit"
-                              style={{ width: 120, marginRight: 25, height: 40 }}
+                              style={{ width: 120, marginRight: 10, height: 40 }}
                               
                             >
                               确定
@@ -320,7 +311,7 @@ console.log()
                         <div className={styles.addMain_sec}>
                           <Radio.Group
                             defaultValue="a"
-                            style={{ marginBottom: 25, marginTop: 25 }}
+                            style={{ marginBottom: 10, marginTop: 10 }}
                           >
                             <Radio.Button value="a">添加api接口权限</Radio.Button>
                           </Radio.Group>
@@ -328,7 +319,7 @@ console.log()
                             {getFieldDecorator("api_authority_text", {})(
                               <Input
                                 placeholder="请输入api接口权限名称"
-                                style={{ marginBottom: 25 }}
+                                style={{ marginBottom: 10 }}
                               />
                             )}
                           </Form.Item>
@@ -337,7 +328,7 @@ console.log()
                             {getFieldDecorator("api_authority_url", {})(
                               <Input
                                 placeholder="请输入api接口权限url"
-                                style={{ marginBottom: 25 }}
+                                style={{ marginBottom: 10 }}
                               />
                             )}
                           </Form.Item>
@@ -346,7 +337,7 @@ console.log()
                             {getFieldDecorator("api_authority_method", {})(
                               <Input
                                 placeholder="请输入api接口权限方法"
-                                style={{ marginBottom: 25 }}
+                                style={{ marginBottom: 10 }}
                               />
                             )}
                           </Form.Item>
@@ -355,7 +346,7 @@ console.log()
                             <Button
                               type="primary"
                               htmlType="submit"
-                              style={{ width: 120, marginRight: 25, height: 40 }}
+                              style={{ width: 120, marginRight: 10, height: 40 }}
                             >
                               确定
                             </Button>
@@ -371,7 +362,7 @@ console.log()
                           <div>
                             <Radio.Group
                               defaultValue="a"
-                              style={{ marginBottom: 25, marginTop: 25 }}
+                              style={{ marginBottom: 10, marginTop: 10 }}
                             >
                               <Radio.Button value="a">添加视图接口权限</Radio.Button>
                             </Radio.Group>
@@ -381,7 +372,7 @@ console.log()
                             {getFieldDecorator("view_id", {})(
                               <Select
                                 showSearch
-                                style={{ width: 150, marginBottom: 25 }}
+                                style={{ width: 150, marginBottom: 10 }}
                                 placeholder="请选择已有视图"
                                 optionFilterProp="children"
                                 onChange={(e)=>onChange(e)}
@@ -410,7 +401,7 @@ console.log()
                             <Button
                               type="primary"
                               htmlType="submit"
-                              style={{ width: 120, marginRight: 25, height: 40 }}
+                              style={{ width: 120, marginRight: 10, height: 40 }}
                             
                             >
                               确定
@@ -426,7 +417,7 @@ console.log()
                           <div>
                             <Radio.Group
                               defaultValue="a"
-                              style={{ marginBottom: 25, marginTop: 25 }}
+                              style={{ marginBottom: 10, marginTop: 10 }}
                             >
                               <Radio.Button value="a">
                                 给身份设置api接口权限
@@ -438,7 +429,7 @@ console.log()
                               {getFieldDecorator("fifth_identity_id", {})(
                                 <Select
                                   showSearch
-                                  style={{ width: 150, marginBottom: 25 }}
+                                  style={{ width: 150, marginBottom: 10 }}
                                   placeholder="请选择身份id"
                                   optionFilterProp="children"
                                   onChange={onChange}
@@ -497,7 +488,7 @@ console.log()
                             <Button
                               type="primary"
                               htmlType="submit"
-                              style={{ width: 120, marginRight: 25, height: 40 }}
+                              style={{ width: 120, marginRight: 10, height: 40 }}
                               
                             >
                               确定
@@ -514,7 +505,7 @@ console.log()
                           <div>
                             <Radio.Group
                               defaultValue="a"
-                              style={{ marginBottom: 25, marginTop: 25 }}
+                              style={{ marginBottom: 10, marginTop: 10 }}
                             >
                               <Radio.Button value="a">给身份设置视图权限</Radio.Button>
                             </Radio.Group>
@@ -524,7 +515,7 @@ console.log()
                               {getFieldDecorator("sixth_ident_text", {})(
                                 <Select
                                   showSearch
-                                  style={{ width: 150, marginBottom: 25 }}
+                                  style={{ width: 150, marginBottom: 10 }}
                                   placeholder="请选择身份id"
                                   optionFilterProp="children"
                                   onChange={onChange}
@@ -554,7 +545,7 @@ console.log()
                               {getFieldDecorator("sixth_view_id", {})(
                                 <Select
                                   showSearch
-                                  style={{ width: 150, marginBottom: 25 }}
+                                  style={{ width: 150, marginBottom: 10 }}
                                   placeholder="请选择视图权限id"
                                   optionFilterProp="children"
                                   onChange={onChange}
@@ -583,7 +574,7 @@ console.log()
                             <Button
                               type="primary"
                               htmlType="submit"
-                              style={{ width: 120, marginRight: 25, height: 40 }}
+                              style={{ width: 120, marginRight: 10, height: 40 }}
                             
                             >
                               确定
