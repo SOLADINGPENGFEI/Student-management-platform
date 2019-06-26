@@ -79,13 +79,28 @@ function AddExam(props) {
         props.form.validateFields((err, values) => {
             if (!err) {
             console.log(values);
+            function checkTime(i){
+                if(i<10){
+               i = '0'+i
+               }
+               return i
+               }
+            let startTime= values.startTime._d
+            let endTime = values.endTime._d
+            let sdate; sdate= new Date("'"+ startTime +"'")
+            let edate; edate= new Date("'"+ endTime +"'")
+            let SdateTime = sdate.getFullYear()+checkTime(sdate.getMonth()+1)+checkTime(sdate.getDate());
+            let EdateTime = edate.getFullYear()+checkTime(edate.getMonth()+1)+checkTime(edate.getDate());
+            let st=Date.parse(SdateTime.substr(4,2)+"/"+SdateTime.substr(6,2)+"/"+SdateTime.substr(0,4));
+            let et=Date.parse(EdateTime.substr(4,2)+"/"+EdateTime.substr(6,2)+"/"+EdateTime.substr(0,4));
+
             props.createItem({
                 subject_id:values.examTest,
                 exam_id:values.examType,
                 title:values.text,
                 number:values.count,
-                start_time:new Date(values.startTime._d.toLocaleString()).getTime(),
-                end_time: new Date(values.endTime._d.toLocaleString()).getTime()
+                start_time:st,
+                end_time: et
             })
              localStorage.setItem('exam',JSON.stringify({
                 subject_id:values.examTest,
@@ -146,20 +161,16 @@ function AddExam(props) {
                         </Select>
                     )}
                 </Form.Item>
-                <Form.Item label="题目数量"
-                    {...formItemLayout}
-                    validateStatus={number.validateStatus}
-                    help={number.errorMsg }
-                    >
-                        {getFieldDecorator('count', {
-                        rules: [{
-                            required: true,
-                            message: '请输入数量',},
-                        ], initialValue: ''
+                <Form.Item label="题目数量" {...formItemLayout} validateStatus={number.validateStatus}
+                    help={number.errorMsg }>
+                    {getFieldDecorator('count', {
+                    rules: [{
+                        required: true,
+                        message: '请输入数量',},
+                    ], initialValue: ''
                     })(
                         <InputNumber min={3} max={10} setfieldsvalue ={number} onChange={handleNumberChange} />
                     )}
-                   
                 </Form.Item>
                 <Form.Item label="考试时间">
                 {getFieldDecorator('startTime', {
