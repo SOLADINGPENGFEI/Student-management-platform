@@ -1,5 +1,5 @@
 # Student-management-platform
-学生考试管理系统
+后台管理系统
  - 试题管理
  - 用户管理
  - 考试管理
